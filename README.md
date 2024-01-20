@@ -7,6 +7,7 @@ This website allows you to create Forms and receive answers for them!
 - [Next.js](https://nextjs.org/)
 - [React](https://reactjs.org/)
 - [NextUI](https://nextui.org/)
+- [DaisyUI](https://daisyui.com)
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## Getting Started
@@ -31,6 +32,7 @@ The project can be customized by:
 
 - Modifying React components in /components
 - Configuring Next.js and TypeScript in next.config.js and tsconfig.json
+- Changing colors set in tailwind.config.ts for daisyUI
 
 ## Deployment
 
