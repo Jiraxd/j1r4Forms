@@ -45,7 +45,7 @@ export const HomePage = () => {
       </div>
       <div className="flex min-h-screen flex-col items-center">
         <div className="min-h-screen bg-base-200 flex min-w-full">
-          <div className="hero mt-20">
+          <div className="hero mt-40">
             <div className="hero-content flex-col">
               <div className="flex">
                 <div className="max-w-xl">
