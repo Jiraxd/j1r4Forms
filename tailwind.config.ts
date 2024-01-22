@@ -24,8 +24,8 @@ const config: Config = {
       {
         light: {
           ...require("daisyui/src/theming/themes")["light"],
-          "base-200": "#FAF9F6",
-          "base-300": "#D3D3D3",
+          "base-200": "#F2F3F4",
+          "base-300": "#D5D5D5",
         },
       },
       {
