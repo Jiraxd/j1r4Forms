@@ -9,6 +9,7 @@ This website allows you to create Forms and receive answers for them!
 - [NextUI](https://nextui.org/)
 - [DaisyUI](https://daisyui.com)
 - [TypeScript](https://www.typescriptlang.org/)
+- [Auth.js](https://authjs.dev)
 
 ## Getting Started
 
