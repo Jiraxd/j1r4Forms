@@ -24,7 +24,7 @@ export const HomePage = () => {
               className="ml-5"
             />
             <p className="ml-3 font-bold text-xl text-base-content">
-              J1R4's Forms
+              {"J1R4's Forms"}
             </p>
           </div>
           <div className="flex cursor-pointer gap-2 mx-auto">
