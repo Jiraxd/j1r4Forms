@@ -1,13 +1,19 @@
 "use client";
 import Image from "next/image";
 import { Moonicon, Sunicon } from "@/app/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { LoginButton } from "./auth/LoginButton";
 
+// https://dndkit.com
 export const HomePage = () => {
+  useEffect(() => {
+    let localTheme = localStorage.getItem("theme");
+    if (localTheme) setTheme(localTheme);
+  }, []);
   const [theme, setTheme] = useState<string>("dark");
   return (
-    <main>
+    <main data-theme={theme}>
       <div
         className="fixed w-full top-0 bg-base-300"
         style={{
@@ -33,13 +39,22 @@ export const HomePage = () => {
               type="checkbox"
               value="light"
               className="toggle theme-controller"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              checked={theme === "light"}
+              onClick={() => {
+                setTheme(theme === "dark" ? "light" : "dark");
+                localStorage.setItem(
+                  "theme",
+                  theme === "dark" ? "light" : "dark"
+                );
+              }}
             />
             <Sunicon color={theme === "dark" ? "white" : "black"} />
           </div>
-          <button className="btn btn-primary btn-outline w-32 mr-5">
-            Log In
-          </button>
+          <LoginButton>
+            <button className="btn btn-primary btn-outline w-32 mr-5">
+              Log In
+            </button>
+          </LoginButton>
           <button className="btn btn-primary w-32 mr-5">Sign Up</button>
         </div>
       </div>

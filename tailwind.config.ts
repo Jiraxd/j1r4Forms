@@ -18,7 +18,7 @@ const config: Config = {
     },
   },
   darkMode: "class",
-  plugins: [nextui(), require("daisyui")],
+  plugins: [nextui(), require("daisyui"), require("tailwindcss-animate")],
   daisyui: {
     themes: [
       {
