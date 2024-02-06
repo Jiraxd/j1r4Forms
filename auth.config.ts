@@ -19,5 +19,5 @@ export default {
     }
     return null;
 }})],
-secret: process.env.NEXT_PUBLIC_SECRET
+secret: process.env.NEXTAUTH_SECRET,
 } satisfies NextAuthConfig
