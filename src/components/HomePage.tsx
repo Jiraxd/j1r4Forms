@@ -74,7 +74,9 @@ export const HomePage = () => {
                     Create good looking surveys and get answers to them using a
                     simple link!
                   </p>
-                  <button className="btn btn-primary">Get Started</button>
+                  <RegisterButton>
+                    <button className="btn btn-primary">Get Started</button>
+                  </RegisterButton>
                 </div>
                 <div className="ml-25 text-slate-500">
                   {"TODO: Add a preview of the form here"}
