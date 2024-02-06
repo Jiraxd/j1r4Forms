@@ -4,6 +4,7 @@ import { Moonicon, Sunicon } from "@/app/icons";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { LoginButton } from "./auth/LoginButton";
+import { RegisterButton } from "./auth/RegisterButton";
 
 // https://dndkit.com
 export const HomePage = () => {
@@ -55,7 +56,9 @@ export const HomePage = () => {
               Log In
             </button>
           </LoginButton>
-          <button className="btn btn-primary w-32 mr-5">Sign Up</button>
+          <RegisterButton>
+            <button className="btn btn-primary w-32 mr-5">Sign Up</button>
+          </RegisterButton>
         </div>
       </div>
       <div className="flex min-h-screen flex-col items-center">
