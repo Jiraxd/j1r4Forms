@@ -1,22 +1,22 @@
-"use server";
 import { useEffect, useState } from "react";
 import { auth } from "../../../auth"
 import { LoginButton } from "../auth/LoginButton";
 import { RegisterButton } from "../auth/RegisterButton";
 import { EnterFormsBtn } from "./enterFormsBTN";
 import { Session } from "next-auth";
+import { getAuth } from "../../../actions/getAuth";
 
 export const LogReg = () => {
     const [session, setSession] = useState<null | Session | string>(null);
     useEffect(() =>{
-    async function getSession() {
-    const tmpsession = await auth();
-    if(tmpsession === null) 
+        async function getxd() {
+    const sessionTMP = await getAuth();
+    if(sessionTMP === null)
         setSession("none");
     else
-        setSession(tmpsession);
-    }
-    getSession();
+        setSession(sessionTMP);
+        }
+        getxd();
     }, []);
     if(session === null) return <div></div>;
     return(
