@@ -7,7 +7,7 @@ interface EnterFormsProps {
 export const EnterFormsBtn = ({children}: EnterFormsProps ) => {
     const router = useRouter();
     const onClickHandle = () => {
-      router.push("/auth/login");
+      router.push("/forms/main");
     };
   
     
