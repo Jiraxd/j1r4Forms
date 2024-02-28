@@ -1,3 +1,4 @@
+"use server";
 import { useEffect, useState } from "react";
 import { auth } from "../../../auth"
 import { LoginButton } from "../auth/LoginButton";
