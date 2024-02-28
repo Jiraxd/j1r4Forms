@@ -5,7 +5,6 @@ import { EnterFormsBtn } from "./enterFormsBTN";
 
 export const LogReg = async() => {
     const session = await auth();
-    console.log(session);
     return(
         <>
         {session === null ? (
