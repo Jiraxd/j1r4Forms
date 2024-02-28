@@ -1,6 +1,7 @@
 import { auth } from "../../../auth"
 import { LoginButton } from "../auth/LoginButton";
 import { RegisterButton } from "../auth/RegisterButton";
+import { EnterFormsBtn } from "./enterFormsBTN";
 
 export const LogReg = async() => {
     const session = await auth();
@@ -19,9 +20,9 @@ export const LogReg = async() => {
           </RegisterButton>
                 </>
         ) : (
-            <div>
-                
-            </div>
+            <EnterFormsBtn>
+                <button className="btn btn-primary w-32 mr-5">Enter Forms</button>
+            </EnterFormsBtn>
         )}
         </>
     );
