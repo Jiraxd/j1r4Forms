@@ -1,10 +1,19 @@
+import { useEffect, useState } from "react";
 import { auth } from "../../../auth"
 import { LoginButton } from "../auth/LoginButton";
 import { RegisterButton } from "../auth/RegisterButton";
 import { EnterFormsBtn } from "./enterFormsBTN";
+import { Session } from "next-auth";
 
-export const LogReg = async() => {
-    const session = await auth();
+export const LogReg = () => {
+    const [session, setSession] = useState<null | Session>(null);
+    useEffect(() =>{
+    async function getSession() {
+     const tmpsession = await auth();
+     if(tmpsession !== null) setSession(tmpsession);
+    }
+    getSession();
+    }, []);
     return(
         <>
         {session === null ? (
