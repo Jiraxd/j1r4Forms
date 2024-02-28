@@ -10,7 +10,7 @@ export const LogReg = () => {
     useEffect(() =>{
     async function getSession() {
      const tmpsession = await auth();
-     if(tmpsession !== null) setSession(tmpsession);
+     setSession(tmpsession);
     }
     getSession();
     }, []);
@@ -18,7 +18,7 @@ export const LogReg = () => {
         <>
         {session === null ? (
             <>
-                 <LoginButton>
+            <LoginButton>
             <button className="btn btn-primary btn-outline w-32 mr-5">
               Log In
             </button>
