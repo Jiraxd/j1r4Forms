@@ -17,8 +17,15 @@ import { Input } from "../ui/input";
 import { FormError } from "./form-error";
 import { login } from "../../../actions/login";
 import { FormSuccess } from "./form-success";
+import { useSearchParams } from "next/navigation";
 
 export const LoginForm = () => {
+  const searchParams = useSearchParams();
+  const urlError =
+    searchParams.get("error") === "OAuthAccountNotLinked"
+      ? "Email already in use with different provider"
+      : "";
+
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const [isPending, startTransition] = useTransition();
@@ -38,6 +45,7 @@ export const LoginForm = () => {
         if (response.error) {
           setError(response.error);
         }
+        // add 2FA
         if (response.success) {
           setSuccess(response.success);
         }
@@ -91,7 +99,7 @@ export const LoginForm = () => {
               )}
             />
           </div>
-          <FormError message={error} />
+          <FormError message={error || urlError} />
           <FormSuccess message={success} />
           <button disabled={isPending} type="submit" className="w-full btn">
             Login
