@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { LoginButton } from "./auth/LoginButton";
 import { RegisterButton } from "./auth/RegisterButton";
+import { LogReg } from "./mainPage/logreg";
 
 // https://dndkit.com
 export const HomePage = () => {
@@ -51,14 +52,7 @@ export const HomePage = () => {
             />
             <Sunicon color={theme === "dark" ? "white" : "black"} />
           </div>
-          <LoginButton>
-            <button className="btn btn-primary btn-outline w-32 mr-5">
-              Log In
-            </button>
-          </LoginButton>
-          <RegisterButton>
-            <button className="btn btn-primary w-32 mr-5">Sign Up</button>
-          </RegisterButton>
+          <LogReg />
         </div>
       </div>
       <div className="flex min-h-screen flex-col items-center">
