@@ -6,17 +6,21 @@ import { EnterFormsBtn } from "./enterFormsBTN";
 import { Session } from "next-auth";
 
 export const LogReg = () => {
-    const [session, setSession] = useState<null | Session>(null);
+    const [session, setSession] = useState<null | Session | string>(null);
     useEffect(() =>{
     async function getSession() {
-     const tmpsession = await auth();
-     setSession(tmpsession);
+    const tmpsession = await auth();
+    if(tmpsession === null) 
+        setSession("none");
+    else
+        setSession(tmpsession);
     }
     getSession();
     }, []);
+    if(session === null) return <div></div>;
     return(
         <>
-        {session === null ? (
+        {session === "none" ? (
             <>
             <LoginButton>
             <button className="btn btn-primary btn-outline w-32 mr-5">
