@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import { auth } from "../../../../../auth";
 import { useRouter } from "next/navigation";
@@ -32,7 +33,7 @@ const MainFormsPage = async () => {
               className="ml-5"
             />
             <p className="ml-3 font-bold text-xl text-base-content">
-              {`Welcome back, ${session?.user?.name}!`}
+              {`Welcome back, ${session?.user?.name}`}
             </p>
           </div>
           <div className="flex cursor-pointer gap-2 mx-auto">
