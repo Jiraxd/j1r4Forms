@@ -21,7 +21,7 @@ const MainFormsPage = () => {
   return (
     <main data-theme={theme}>
       <NavBarForms theme={theme} onThemeChange={handleThemeChange} />
-      <div className="flex min-h-screen flex-row flex-wrap gap-4 items-center mt-40">
+      <div className="flex min-h-screen flex-row flex-wrap gap-4 items-center mt-40 ml-auto mt-10">
       <FormPreview />
       </div>
     </main>
