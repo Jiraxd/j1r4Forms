@@ -12,6 +12,7 @@ export const FormPreview = () => {
     const [loading, setLoading] = useState<null | FormModel[]>(null);
     useEffect(() => {
         async function getForms(){
+            setLoading([]);
             // TODO: fetchnout forms
         }
         getForms();
