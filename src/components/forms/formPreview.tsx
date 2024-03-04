@@ -20,7 +20,7 @@ export const FormPreview = () => {
     if(loading === null) return <LoaderCircle />;
     if(loading.length === 0) return (
         <CreateFormBTN>
-                <button className="btn btn-primary w-24 h-12 mr-4">Create new form...</button>
+                <button className="btn btn-primary w-60 h-18 mr-4">Create new form...</button>
         </CreateFormBTN>
     );
     return(
