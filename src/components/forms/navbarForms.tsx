@@ -5,6 +5,7 @@ import { Moonicon, Sunicon } from "@/app/icons";
 import { EnterSettingsBTN } from "@/components/mainPage/settingsBTN";
 import { Session } from "next-auth";
 import { getAuth } from "../../../actions/getAuth";
+import { FormPreview } from "./formPreview";
 
 type Props = {
   theme: string;
@@ -22,7 +23,8 @@ export const NavBarForms = ({ theme, onThemeChange }: Props) => {
   }, []);
 
   return (
-    <div
+    <div>
+      <div
       className="fixed w-full top-0 bg-base-300"
       style={{
         zIndex: 200,
@@ -57,6 +59,10 @@ export const NavBarForms = ({ theme, onThemeChange }: Props) => {
         <EnterSettingsBTN>
           <button className="btn btn-accent w-32 mr-5">Settings</button>
         </EnterSettingsBTN>
+      </div>
+    </div>
+    <div>
+      <FormPreview />
       </div>
     </div>
   );
