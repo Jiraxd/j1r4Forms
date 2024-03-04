@@ -10,6 +10,7 @@ export type FormModel = {
 }
 export const FormPreview = () => {
     const [loading, setLoading] = useState<null | FormModel[]>(null);
+    const [page, setPage] = useState<number>(1);
     useEffect(() => {
         async function getForms(){
             const model: FormModel = {
@@ -30,11 +31,17 @@ export const FormPreview = () => {
         </CreateFormBTN>
         </>
     );
+    // TODO: pokud vice nez X formu, dalsi stranka
     return(
-        <div className="mt-40 flex gap-12 flex-wrap w-full flex-row justify-center" >
+        <div>
+        <div className="mt-40 flex gap-24 flex-wrap w-full flex-row justify-center" >
             {loading.map((value) => (
                 <FormDisplay key={value.id} formID={value.id} formName={value.name} />
             ))}
+        </div>
+        <div className="mb-20 flex w-ful justify-center">
+                {"Page: " + page}
+        </div>
         </div>
     );
 }
