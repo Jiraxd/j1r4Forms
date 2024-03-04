@@ -16,7 +16,7 @@ export const FormPreview = () => {
                 id: "id",
                 name: "name"
             };
-            setLoading([model]);
+            setLoading([model, model, model, model]);
             // TODO: fetchnout forms
         }
         getForms();
