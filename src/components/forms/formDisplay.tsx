@@ -9,6 +9,7 @@ export const FormDisplay = ({formName, formID}: Props) => {
         <div className="cursor-pointer flex-col items-center">
             {/*tady bude preview*/}
         <span>{formName}</span>
+        <span>{formID}</span>
         </div>
     );
 }
