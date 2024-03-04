@@ -43,7 +43,9 @@ export const FormPreview = () => {
             ))}
         </div>
         <div className="fixed bottom-40 w-full mx-auto">
+            <div className="flex w-full justify-center flex-row">
                 {"Page: " + page}
+                </div>
         </div>
         </div>
     );
