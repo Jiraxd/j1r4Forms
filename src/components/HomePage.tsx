@@ -35,7 +35,7 @@ export const HomePage = () => {
               {"J1R4's Forms"}
             </p>
           </div>
-          <div className="flex cursor-pointer gap-2 mx-auto">
+          <div className="flex cursor-pointer gap-2 ml-auto mr-6">
             <Moonicon color={theme === "dark" ? "white" : "black"} />
             <input
               type="checkbox"

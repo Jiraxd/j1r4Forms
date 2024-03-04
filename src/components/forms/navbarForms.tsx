@@ -43,7 +43,7 @@ export const NavBarForms = ({ theme, onThemeChange }: Props) => {
             {`Welcome back, ${session?.user?.name || "user"}`}
           </p>
         </div>
-        <div className="flex cursor-pointer gap-2 mx-auto">
+        <div className="flex cursor-pointer gap-2 mr-6 ml-auto">
           <Moonicon color={theme === "dark" ? "white" : "black"} />
           <input
             type="checkbox"
