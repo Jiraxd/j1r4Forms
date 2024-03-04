@@ -34,9 +34,10 @@ export const FormPreview = () => {
     // TODO: pokud vice nez X formu, dalsi stranka
     return(
         <div className="flex w-full min-h-screen">
-        <div className="mt-40 flex gap-24 flex-wrap w-full flex-row justify-center h-max" style={{
+        <div className="mt-40 flex gap-24 flex-wrap w-full flex-row justify-center" style={{
             paddingLeft: "10%",
             paddingRight: "10%",
+            height: "maxContent"
         }} >
             {loading.map((value) => (
                 <FormDisplay key={value.id} formID={value.id} formName={value.name} />
