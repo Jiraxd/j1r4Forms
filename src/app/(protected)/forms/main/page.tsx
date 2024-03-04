@@ -21,9 +21,8 @@ const MainFormsPage = () => {
   return (
     <main data-theme={theme}>
       <NavBarForms theme={theme} onThemeChange={handleThemeChange} />
-      <div className="flex w-full">
+
       <FormPreview />
-      </div>
     </main>
   );
 };
