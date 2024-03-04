@@ -61,9 +61,6 @@ export const NavBarForms = ({ theme, onThemeChange }: Props) => {
         </EnterSettingsBTN>
       </div>
     </div>
-    <div className="flex min-h-screen flex-col items-center mt-40">
-      <FormPreview />
-      </div>
     </div>
   );
 };

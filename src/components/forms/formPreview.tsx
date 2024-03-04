@@ -12,7 +12,11 @@ export const FormPreview = () => {
     const [loading, setLoading] = useState<null | FormModel[]>(null);
     useEffect(() => {
         async function getForms(){
-            setLoading([]);
+            const model: FormModel = {
+                id: "id",
+                name: "name"
+            };
+            setLoading([model]);
             // TODO: fetchnout forms
         }
         getForms();
