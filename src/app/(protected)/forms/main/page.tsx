@@ -21,7 +21,11 @@ const MainFormsPage = () => {
   return (
     <main data-theme={theme}>
       <NavBarForms theme={theme} onThemeChange={handleThemeChange} />
-      <div className="flex flex-row flex-wrap gap-4 items-center w-full">
+      <div className="flex-row flex-wrap gap-4 mx-auto w-full" style={
+        {
+          justifyContent: "center"
+        }
+      }>
       <FormPreview />
       </div>
     </main>
