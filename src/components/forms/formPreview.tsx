@@ -31,7 +31,7 @@ export const FormPreview = () => {
         </>
     );
     return(
-        <div className="mt-40">
+        <div className="mt-40 flex-row flex-wrap gap-4 mx-auto justify-center" >
             {loading.map((value) => (
                 <FormDisplay key={value.id} formID={value.id} formName={value.name} />
             ))}
