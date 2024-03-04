@@ -31,10 +31,10 @@ export const FormPreview = () => {
         </>
     );
     return(
-        <>
+        <div className="mt-40">
             {loading.map((value) => (
                 <FormDisplay key={value.id} formID={value.id} formName={value.name} />
             ))}
-        </>
+        </div>
     );
 }
