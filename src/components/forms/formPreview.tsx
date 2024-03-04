@@ -42,7 +42,7 @@ export const FormPreview = () => {
                 <FormDisplay key={value.id} formID={value.id} formName={value.name} />
             ))}
         </div>
-        <div className="fixed bottom-40 w-full justify-center">
+        <div className="fixed bottom-40 w-full mx-auto">
                 {"Page: " + page}
         </div>
         </div>
