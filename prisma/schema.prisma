@@ -61,7 +61,7 @@ model FormAnswer {
 
 model UserAnswered {
   userID            String
-  AnswersUserForm[]
+  useransweres      AnswersUserForm[]
 }
 
 model AnswersUserForm {
