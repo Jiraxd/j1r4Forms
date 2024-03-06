@@ -41,13 +41,15 @@ model Account {
 }
 
 model SavedForm {
+  id                String  @id @default(cuid())
   name              String
-  id                String
+  formID            String
   fields            FormField[]
   answersfromusers  UserAnswered[]   
 }
 
 model FormField {
+  id                String  @id @default(cuid())
   fieldID           Int
   fieldTitle        String
   fieldAnswerType   Int
@@ -55,16 +57,19 @@ model FormField {
 }
 
 model FormAnswer {
+  id                String  @id @default(cuid())
   answerType        Int
   answerName        String
 }
 
 model UserAnswered {
+  id                String  @id @default(cuid())
   userID            String
   useransweres      AnswersUserForm[]
 }
 
 model AnswersUserForm {
+  id                String  @id @default(cuid())
   answerIndex       Int
   answer            String
 }
