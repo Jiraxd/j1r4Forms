@@ -42,6 +42,9 @@ export const FormPreview = () => {
             {loading.map((value) => (
                 <FormDisplay key={value.id} formID={value.id} formName={value.name} />
             ))}
+                    <CreateFormBTN>
+                <button className="btn btn-primary w-40 h-16">Create new form...</button>
+        </CreateFormBTN>
         </div>
         <div className="fixed bottom-40 w-full mx-auto">
             <div className="flex w-full justify-center flex-row">
