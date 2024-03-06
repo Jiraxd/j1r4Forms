@@ -41,30 +41,37 @@ model Account {
 }
 
 model SavedForm {
-  id                String  @id @default(cuid())
+  formid            String  @id @default(cuid())
   name              String
-  formID            String
+  author            User @relation(fields: [userid], references: [id])
+  userid            String
   fields            FormField[]
   answersfromusers  UserAnswered[]   
 }
 
 model FormField {
   id                String  @id @default(cuid())
-  fieldID           Int
+  fieldID           Int @unique
   fieldTitle        String
   fieldAnswerType   Int
+  formid            String
+  form              SavedForm @relation(fields: [formid], references: [formid])
   Answers           FormAnswer[]      
 }
 
 model FormAnswer {
   id                String  @id @default(cuid())
+  formfield         FormField @relation(fields: [fieldid], references: [fieldID])
+  fieldid           Int
   answerType        Int
   answerName        String
 }
 
 model UserAnswered {
   id                String  @id @default(cuid())
-  userID            String
+  userID            String @unique
+  form              SavedForm @relation(fields: [formid], references: [formid])
+  formid            String
   useransweres      AnswersUserForm[]
 }
 
@@ -72,4 +79,6 @@ model AnswersUserForm {
   id                String  @id @default(cuid())
   answerIndex       Int
   answer            String
+  useranswered      UserAnswered @relation(fields: [userid], references: [userID])
+  userid            String
 }
