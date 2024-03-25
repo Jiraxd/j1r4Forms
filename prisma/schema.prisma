@@ -18,7 +18,6 @@ model User {
   image         String?
   password      String?
   accounts      Account[]
-  forms         SavedForm[]
 }
 
 model Account {
@@ -41,44 +40,43 @@ model Account {
 }
 
 model SavedForm {
-  formid            String  @id @default(cuid())
-  name              String
-  author            User @relation(fields: [userid], references: [id])
-  userid            String
-  fields            FormField[]
-  answersfromusers  UserAnswered[]   
+  formid           String         @id @default(cuid())
+  name             String
+  authorID         String
+  fields           FormField[]
+  answersfromusers UserAnswered[]
 }
 
 model FormField {
-  id                String  @id @default(cuid())
-  fieldID           Int @unique
-  fieldTitle        String
-  fieldAnswerType   Int
-  formid            String
-  form              SavedForm @relation(fields: [formid], references: [formid])
-  Answers           FormAnswer[]      
+  fieldID         Int          @id @default(autoincrement())
+  fieldTitle      String
+  fieldAnswerType Int
+  formid          String
+  Answers         FormAnswer[]
+  savedFormFormid String?
+  SavedForm       SavedForm?   @relation(fields: [savedFormFormid], references: [formid])
 }
 
 model FormAnswer {
-  id                String  @id @default(cuid())
-  formfield         FormField @relation(fields: [fieldid], references: [fieldID])
-  fieldid           Int
-  answerType        Int
-  answerName        String
+  id         String    @id @default(cuid())
+  formfield  FormField @relation(fields: [fieldid], references: [fieldID])
+  fieldid    Int
+  answerType Int
+  answerName String
 }
 
 model UserAnswered {
-  id                String  @id @default(cuid())
-  userID            String @unique
-  form              SavedForm @relation(fields: [formid], references: [formid])
-  formid            String
-  useransweres      AnswersUserForm[]
+  id           String            @id @default(cuid())
+  userID       String            @unique
+  form         SavedForm         @relation(fields: [formid], references: [formid])
+  formid       String
+  useransweres AnswersUserForm[]
 }
 
 model AnswersUserForm {
-  id                String  @id @default(cuid())
-  answerIndex       Int
-  answer            String
-  useranswered      UserAnswered @relation(fields: [userid], references: [userID])
-  userid            String
+  id           String       @id @default(cuid())
+  answerIndex  Int
+  answer       String
+  useranswered UserAnswered @relation(fields: [userid], references: [userID])
+  userid       String
 }

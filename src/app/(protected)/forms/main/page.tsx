@@ -21,7 +21,7 @@ const MainFormsPage = () => {
   return (
     <main data-theme={theme}>
       <NavBarForms theme={theme} onThemeChange={handleThemeChange} />
-
+    
       <FormPreview />
     </main>
   );
