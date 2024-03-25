@@ -7,6 +7,7 @@ import { getAuth } from "../../../actions/getAuth";
 import { array } from "zod";
 import bcryptjs from "bcryptjs";
 import { createFormServer } from "../../../actions/createForm";
+import { useRouter } from "next/navigation";
 
 export type FormModel = {
   id: string;
@@ -15,6 +16,7 @@ export type FormModel = {
 export const FormPreview = () => {
   const [loading, setLoading] = useState<null | FormModel[]>(null);
   const [page, setPage] = useState<number>(1);
+  const router = useRouter();
   useEffect(() => {
     async function getForms() {
       let session = await getAuth();
@@ -41,7 +43,7 @@ export const FormPreview = () => {
       return;
     }
     let formid = await createFormServer(session.user.id);
-    
+    router.push(`/forms/form/${formid}`);
   };
   if (loading === null)
     return (
