@@ -5,6 +5,7 @@ import { RegisterButton } from "../auth/RegisterButton";
 import { EnterFormsBtn } from "./enterFormsBTN";
 import { Session } from "next-auth";
 import { getAuth } from "../../../actions/getAuth";
+import { EnterSettingsBTN } from "./settingsBTN";
 
 export const LogReg = () => {
     const [session, setSession] = useState<null | Session | string>(null);
@@ -33,9 +34,14 @@ export const LogReg = () => {
           </RegisterButton>
                 </>
         ) : (
+            <>
             <EnterFormsBtn>
                 <button className="btn btn-primary w-32 mr-5">Enter Forms</button>
             </EnterFormsBtn>
+            <EnterSettingsBTN>
+            <button className="btn btn-accent w-32 mr-5">Settings</button>
+          </EnterSettingsBTN>
+            </>
         )}
         </>
     );

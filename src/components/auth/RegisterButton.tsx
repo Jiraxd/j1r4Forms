@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { getAuth } from "../../../actions/getAuth";
 
 interface RegButtonProps {
   children: React.ReactNode;
@@ -14,7 +15,11 @@ export const RegisterButton = ({
   asChild,
 }: RegButtonProps) => {
   const router = useRouter();
-  const onClickHandle = () => {
+  const onClickHandle = async() => {
+    const session = await getAuth();
+    if(session)
+    router.push("/forms/main");
+  else
     router.push("/auth/register");
   };
 
