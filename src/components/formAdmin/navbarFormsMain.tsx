@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { db } from "@/lib/db";
 import { updateFormName } from "../../../actions/updateFormName";
 import { Input } from "../ui/input";
+import { button } from "@nextui-org/react";
 
 type Props = {
   theme: string;
@@ -26,12 +27,12 @@ export const NavBarFormMain = ({ theme, onThemeChange, form }: Props) => {
   return (
     <div>
       <div
-        className="fixed w-full top-0 bg-base-300"
+        className="fixed w-full top-0"
         style={{
           zIndex: 200,
         }}
       >
-        <div className="flex w-full min-h-16 items-center">
+        <div className="flex w-full min-h-16 items-center bg-base-300">
           <div className="flex">
             <button onClick={() => router.push("/forms/main")}>
               <Image
@@ -66,6 +67,19 @@ export const NavBarFormMain = ({ theme, onThemeChange, form }: Props) => {
           <EnterSettingsBTN>
             <button className="btn btn-accent w-32 mr-5">Settings</button>
           </EnterSettingsBTN>
+        </div>
+        <div className="flex w-full items-center min-h-8 justify-center gap-8">
+          <span className="cursor-pointer">Questions</span>
+          <span className="inline-block whitespace-nowrap cursor-pointer">
+            {"Answers"}{" "}
+            <span
+              className={`rounded-full px-2 pt-1 pb-1 ${
+                theme === "dark" ? "bg-base-300" : "bg-slate-300"
+              } ${theme === "dark" ? "text-white" : "text-black"}`}
+            >
+              {(form.answersfromusers as [])?.length || "0"}
+            </span>
+          </span>
         </div>
       </div>
     </div>
