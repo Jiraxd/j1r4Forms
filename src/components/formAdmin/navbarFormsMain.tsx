@@ -18,6 +18,7 @@ type Props = {
 export const NavBarFormMain = ({ theme, onThemeChange, form }: Props) => {
   const router = useRouter();
   const [formName, setName] = useState<string>(form.name);
+  const [selectedQuestions, setSelected] = useState<boolean>(true);
 
   const handleNameChange = async () => {
     if (formName === form.name) return;
@@ -69,11 +70,31 @@ export const NavBarFormMain = ({ theme, onThemeChange, form }: Props) => {
           </EnterSettingsBTN>
         </div>
         <div className="flex w-full items-center min-h-8 justify-center gap-8">
-          <span className="cursor-pointer">Questions</span>
-          <span className="inline-block whitespace-nowrap cursor-pointer">
+          <span
+            className="cursor-pointer pb-1 pt-2"
+            onClick={() => setSelected(true)}
+            style={{
+              borderBottom: selectedQuestions
+                ? "3px solid rgb(76, 43, 135)"
+                : "3px solid rgba(0,0,0,0)",
+              transition: "border-bottom 0.3s ease",
+            }}
+          >
+            Questions
+          </span>
+          <span
+            className="inline-block whitespace-nowrap cursor-pointer pb-1 pt-2"
+            onClick={() => setSelected(false)}
+            style={{
+              borderBottom: selectedQuestions
+                ? "3px solid rgba(0,0,0,0)"
+                : "3px solid rgb(76, 43, 135)",
+              transition: "border-bottom 0.3s ease",
+            }}
+          >
             {"Answers"}{" "}
             <span
-              className={`rounded-full px-2 pt-1 pb-1 ${
+              className={`rounded-full px-2 ${
                 theme === "dark" ? "bg-base-300" : "bg-slate-300"
               } ${theme === "dark" ? "text-white" : "text-black"}`}
             >
