@@ -15,7 +15,6 @@ export type FormModel = {
 };
 export const FormPreview = () => {
   const [loading, setLoading] = useState<null | FormModel[]>(null);
-  const [page, setPage] = useState<number>(1);
   const router = useRouter();
   useEffect(() => {
     async function getForms() {
@@ -83,7 +82,6 @@ export const FormPreview = () => {
         </div>
       </div>
     );
-  // TODO: pokud vice nez X formu, dalsi stranka
   return (
     <div className="flex w-full min-h-screen">
       <div
@@ -103,15 +101,6 @@ export const FormPreview = () => {
         >
           Create new form...
         </button>
-      </div>
-      <div className="fixed bottom-40 w-full mx-auto">
-        <div className="flex w-full justify-center flex-row">
-          <div className="join">
-            <button className="join-item btn">«</button>
-            <button className="join-item btn">Page {page}</button>
-            <button className="join-item btn">»</button>
-          </div>
-        </div>
       </div>
     </div>
   );

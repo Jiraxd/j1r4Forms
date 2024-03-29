@@ -1,10 +1,11 @@
 import NextAuth from "next-auth"
 import authConfig from "./auth.config";
-import {PrismaAdapter} from "@auth/prisma-adapter";
 import { db } from "@/lib/db";
 import{ type Session} from "next-auth";
 import type { JWT } from "next-auth/jwt"
 import { getUserById } from "./data/user";
+import { PrismaAdapter } from "@auth/prisma-adapter"
+
 
 export const {
   handlers: { GET, POST },
@@ -23,12 +24,6 @@ export const {
   },
   callbacks: {
     async signIn({user}){
-      /*
-      const existingUser = await getUserById(user.id);
-      if(!existingUser || !existingUser.emailVerified){
-        return false;
-      }
-      */
       return true;
     },
     async session({ session, token }: { session: Session; token?: JWT }) {
@@ -46,5 +41,4 @@ export const {
   ...authConfig,
   adapter: PrismaAdapter(db),
   session: {strategy: "jwt"},
- 
 });

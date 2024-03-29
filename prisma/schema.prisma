@@ -53,14 +53,12 @@ model FormField {
   fieldAnswerType Int
   formid          String
   Answers         FormAnswer[]
-  savedFormFormid String?
-  SavedForm       SavedForm?   @relation(fields: [savedFormFormid], references: [formid])
+  SavedForm       SavedForm?   @relation(fields: [formid], references: [formid])
 }
 
 model FormAnswer {
-  id         String    @id @default(cuid())
   formfield  FormField @relation(fields: [fieldid], references: [fieldID])
-  fieldid    Int
+  fieldid    Int       @id
   answerType Int
   answerName String
 }
