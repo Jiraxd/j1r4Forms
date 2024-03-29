@@ -8,7 +8,7 @@ import { LoaderCircle } from "@/components/loader";
 import { getSavedForm } from "../../../../../../actions/getSavedForm";
 import { NavBarFormMain } from "@/components/formAdmin/navbarFormsMain";
 
-const formPage = () => {
+const FormPage = () => {
   const [theme, setTheme] = useState<string>("dark");
   const [form, setForm] = useState<any>(null);
   const pathname = usePathname();
@@ -43,4 +43,4 @@ const formPage = () => {
   );
 };
 
-export default formPage;
+export default FormPage;
