@@ -1,6 +1,7 @@
 "use server";
 
 import {db} from "@/lib/db";
+import { Prisma } from "@prisma/client";
 import cuid from 'cuid';
 
 export const getSavedForm = async(id:string) => { 
@@ -9,7 +10,11 @@ export const getSavedForm = async(id:string) => {
       formid: id,
     },
     include: {
-      fields: true,
+      fields: {
+        include: {
+          Answers: true,
+        },
+      }
     }
   });
       return form;

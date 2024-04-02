@@ -25,6 +25,7 @@ export const FormPreview = () => {
       }
       const forms = await getFormsServer(session.user.id);
       let formArray = new Array<FormModel>();
+      if (forms == null) return;
       for (let form of forms) {
         formArray.push({
           id: form.formid,

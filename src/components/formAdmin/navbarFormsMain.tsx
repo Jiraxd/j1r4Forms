@@ -5,7 +5,7 @@ import { Moonicon, Sunicon } from "@/app/icons";
 import { EnterSettingsBTN } from "@/components/mainPage/settingsBTN";
 import { useRouter } from "next/navigation";
 import { db } from "@/lib/db";
-import { updateFormName } from "../../../actions/updateFormName";
+import { updateFormName } from "../../../actions/dbUpdates";
 import { Input } from "../ui/input";
 import { button } from "@nextui-org/react";
 
@@ -50,6 +50,7 @@ export const NavBarFormMain = ({ theme, onThemeChange, form }: Props) => {
               value={formName}
               onChange={(e) => setName(e.target.value)}
               onBlur={handleNameChange}
+              spellCheck={false}
             />
           </div>
           <div className="flex cursor-pointer gap-2 mr-6 ml-auto">

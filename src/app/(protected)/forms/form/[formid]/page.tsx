@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { LoaderCircle } from "@/components/loader";
 import { getSavedForm } from "../../../../../../actions/getSavedForm";
 import { NavBarFormMain } from "@/components/formAdmin/navbarFormsMain";
+import { FormWrapper } from "@/components/formAdmin/formWrapper";
+import { Prisma } from "@prisma/client";
 
 const FormPage = () => {
   const [theme, setTheme] = useState<string>("dark");
@@ -21,7 +23,6 @@ const FormPage = () => {
     }
     getxd();
   }, []);
-
   const handleThemeChange = (newTheme: string) => {
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
@@ -39,6 +40,7 @@ const FormPage = () => {
         onThemeChange={handleThemeChange}
         form={form}
       />
+      <FormWrapper form={form} />
     </main>
   );
 };

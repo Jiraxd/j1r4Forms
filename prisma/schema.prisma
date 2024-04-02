@@ -43,6 +43,8 @@ model SavedForm {
   formid           String         @id @default(cuid())
   name             String
   authorID         String
+  formtitle        String
+  formdescription  String
   fields           FormField[]
   answersfromusers UserAnswered[]
 }

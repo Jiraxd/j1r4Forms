@@ -10,6 +10,8 @@ export const createFormServer = async(id:string) => {
           authorID: id,
           name: "Untitled Form",
           formid: newFormId,
+          formtitle: "Form Title",
+          formdescription: "This is your form!",
           fields: {
             create: {
               fieldTitle: "Untitled Field",
