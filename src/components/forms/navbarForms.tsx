@@ -49,7 +49,7 @@ export const NavBarForms = ({ theme, onThemeChange }: Props) => {
               type="checkbox"
               value="light"
               className="toggle theme-controller"
-              checked={theme === "light"}
+              defaultChecked={theme === "light"}
               onClick={() => {
                 onThemeChange(theme === "dark" ? "light" : "dark");
               }}

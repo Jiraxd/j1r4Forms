@@ -1,7 +1,8 @@
+import { getAuth } from "../../../../actions/getAuth";
 import { auth, signOut } from "../../../../auth";
 
 const SettingsPage = async () => {
-  const session = await auth();
+  const session = await getAuth();
   return (
     <div>
       {JSON.stringify(session)}

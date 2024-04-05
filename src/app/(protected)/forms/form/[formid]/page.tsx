@@ -23,6 +23,9 @@ const FormPage = () => {
     }
     getxd();
   }, []);
+  const callbackUpdateFormClient = (formupdated: any) => {
+    setForm(formupdated);
+  };
   const handleThemeChange = (newTheme: string) => {
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
@@ -34,13 +37,13 @@ const FormPage = () => {
       </div>
     );
   return (
-    <main data-theme={theme}>
+    <main data-theme={theme} className="overflow-y-auto">
       <NavBarFormMain
         theme={theme}
         onThemeChange={handleThemeChange}
         form={form}
       />
-      <FormWrapper form={form} />
+      <FormWrapper form={form} callback={callbackUpdateFormClient} />
     </main>
   );
 };

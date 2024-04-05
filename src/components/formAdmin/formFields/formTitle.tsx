@@ -35,7 +35,7 @@ export const FormTitle = ({
     >
       <div className="w-full p-6">
         <Input
-          className="text-4xl font-bold text-gray-300 border-transparent"
+          className="text-3xl font-bold text-gray-300 border-transparent"
           type="text"
           value={formTitle}
           onChange={(e) => setTitle(e.target.value)}
@@ -43,7 +43,7 @@ export const FormTitle = ({
           spellCheck={false}
         />
         <Input
-          className="text-xl text-gray-300 border-transparent mt-4"
+          className="text-lg text-gray-300 border-transparent mt-4"
           type="text"
           value={formDesc}
           onChange={(e) => setDesc(e.target.value)}

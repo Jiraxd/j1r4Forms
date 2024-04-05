@@ -62,7 +62,7 @@ export const FormPreview = () => {
     );
   if (loading.length === 0)
     return (
-      <div className="flex w-full min-h-screen">
+      <div className="flex w-full">
         <div
           className="mt-40 flex gap-24 flex-wrap w-full flex-row justify-center"
           style={{
@@ -84,13 +84,12 @@ export const FormPreview = () => {
       </div>
     );
   return (
-    <div className="flex w-full min-h-screen">
+    <div className="flex w-full">
       <div
         className="mt-40 flex gap-24 flex-wrap w-full flex-row justify-center"
         style={{
           paddingLeft: "10%",
           paddingRight: "10%",
-          height: "maxContent",
         }}
       >
         {loading.map((value) => (

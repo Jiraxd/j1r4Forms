@@ -37,3 +37,49 @@ export const updateTitleDesc = async(id:string, type:string, text:string) => {
 }
 
 };
+
+export const fieldUpdateTitle = async (
+  id: string,
+  position: number,
+  text: string
+) => {
+  await db.formField.update({
+ where:{
+  formid: id,
+  fieldID: position
+ },
+ data:{
+  fieldTitle: text,
+ }
+  });
+};
+
+export const addNewField = async(id:string) => {
+  const form = await db.savedForm.update({
+    where: {
+      formid: id,
+    },
+    data: {
+      fields: {
+        create: {
+          fieldTitle: "Untitled Field",
+          fieldAnswerType: 0,
+          Answers:{
+            create:{
+              answerName: "Untitled Answer",
+              answerType: 0
+            }
+          }
+        },
+      },
+    },
+    include: {
+      fields: {
+        include: {
+          Answers: true,
+        },
+      }
+    }
+  });
+  return form;
+}
