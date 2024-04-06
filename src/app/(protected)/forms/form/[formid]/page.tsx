@@ -9,10 +9,12 @@ import { getSavedForm } from "../../../../../../actions/getSavedForm";
 import { NavBarFormMain } from "@/components/formAdmin/navbarFormsMain";
 import { FormWrapper } from "@/components/formAdmin/formWrapper";
 import { Prisma } from "@prisma/client";
+import Mousetrap from "mousetrap";
 
 const FormPage = () => {
   const [theme, setTheme] = useState<string>("dark");
   const [form, setForm] = useState<any>(null);
+  const [showModal, setShowModal] = useState<boolean>(false);
   const pathname = usePathname();
   useEffect(() => {
     let localTheme = localStorage.getItem("theme");
@@ -23,6 +25,12 @@ const FormPage = () => {
     }
     getxd();
   }, []);
+
+  Mousetrap.bind(["command+s", "ctrl+s"], function () {
+    //@ts-ignore
+    document.getElementById("save_popup")?.showModal();
+    return false;
+  });
   const callbackUpdateFormClient = (formupdated: any) => {
     setForm(formupdated);
   };
@@ -44,6 +52,17 @@ const FormPage = () => {
         form={form}
       />
       <FormWrapper form={form} callback={callbackUpdateFormClient} />
+      <dialog id="save_popup" className="modal">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">No need to save!</h3>
+          <p className="py-4">
+            Your changes are saved automatically upon every change
+          </p>
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
     </main>
   );
 };

@@ -16,6 +16,7 @@ export const createFormServer = async(id:string) => {
             create: {
               fieldTitle: "Untitled Field",
               fieldAnswerType: 0,
+              position: 0,
               Answers:{
                 create:{
                   answerName: "Untitled Answer",

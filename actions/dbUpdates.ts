@@ -54,7 +54,7 @@ export const fieldUpdateTitle = async (
   });
 };
 
-export const addNewField = async(id:string) => {
+export const addNewField = async(id:string, position:number) => {
   const form = await db.savedForm.update({
     where: {
       formid: id,
@@ -64,6 +64,7 @@ export const addNewField = async(id:string) => {
         create: {
           fieldTitle: "Untitled Field",
           fieldAnswerType: 0,
+          position: position,
           Answers:{
             create:{
               answerName: "Untitled Answer",
@@ -82,4 +83,25 @@ export const addNewField = async(id:string) => {
     }
   });
   return form;
+}
+
+export const UpdateFieldAnswerType = async(id:string, position:number, type:number, fieldid:number) => {
+  await db.savedForm.update({
+    where: {
+      formid: id,
+    },
+    data:{
+      fields:{
+        update:{
+          where:{
+            position: position,
+           fieldID: fieldid
+          },
+          data:{
+            fieldAnswerType: type
+          }
+        }
+      }
+    }
+  })
 }

@@ -10,14 +10,23 @@ export const FormWrapper = ({
   form: any;
   callback: Function;
 }) => {
+  const [selectedField, setSelectedField] = useState<number>(-1);
   console.log(form);
   const callbackCreateField = (formnew: any) => {
     callback(formnew);
   };
+  const callbackAnswerChange = (fieldIndex: number, answerindex: number) => {
+    const newform = form;
+    newform.fields[fieldIndex].fieldAnswerType = answerindex;
+    callback(newform);
+  };
   return (
     <div className="overflow-x-auto">
       <div className="mt-32 mx-auto w-[770px]">
-        <div className="flex min-h-16 items-center justify-center min-w-96 break-words">
+        <div
+          className="flex min-h-16 items-center justify-center min-w-96 break-words"
+          onClick={() => setSelectedField(-1)}
+        >
           <FormTitle
             title={form.formtitle}
             description={form.formdescription}
@@ -29,13 +38,35 @@ export const FormWrapper = ({
           {(form.fields as []).length === 0 ? (
             <div>Create new questions in the menu!</div>
           ) : (
-            (form.fields as []).map((field: any, index: number) => {
-              return (
-                <div key={index} className="mt-10">
-                  <FormField field={field} index={index} formid={form.formid} />
-                </div>
-              );
-            })
+            (form.fields as [])
+              .toSorted((a, b) => {
+                if ((a as any).position < (b as any).position) {
+                  return -1;
+                }
+                if ((a as any).position > (b as any).position) {
+                  return 1;
+                }
+                return 0;
+              })
+              .map((field: any, index: number) => {
+                return (
+                  <div
+                    key={index}
+                    className="mt-10"
+                    onClick={() => {
+                      setSelectedField(index);
+                    }}
+                  >
+                    <FormField
+                      field={field}
+                      selected={selectedField === index}
+                      formid={form.formid}
+                      callback={callbackAnswerChange}
+                      indexForm={index}
+                    />
+                  </div>
+                );
+              })
           )}
         </div>
       </div>

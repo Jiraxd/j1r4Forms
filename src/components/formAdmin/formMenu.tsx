@@ -8,12 +8,22 @@ export const FormMenu = ({
   form: any;
   callback: Function;
 }) => {
+  const [scrollPos, setScrollPos] = useState<number>(0);
   const handleCreate = async () => {
-    const formNew = await addNewField(form.formid);
+    const formNew = await addNewField(form.formid, form.fields.length);
     callback(formNew);
   };
+  onscroll = () => {
+    setScrollPos(window.scrollY);
+  };
   return (
-    <div className="relative flex justify-end">
+    <div
+      className="relative flex justify-end"
+      style={{
+        top: scrollPos,
+        transition: "top 0.2s ease-out",
+      }}
+    >
       <div className="right-[-62px] top-[-70px] absolute">
         <div className="flex-col">
           <button

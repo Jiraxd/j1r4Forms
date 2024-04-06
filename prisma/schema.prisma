@@ -54,6 +54,7 @@ model FormField {
   fieldTitle      String
   fieldAnswerType Int
   formid          String
+  position        Int
   Answers         FormAnswer[]
   SavedForm       SavedForm?   @relation(fields: [formid], references: [formid])
 }
