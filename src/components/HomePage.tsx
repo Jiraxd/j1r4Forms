@@ -41,7 +41,7 @@ export const HomePage = () => {
               type="checkbox"
               value="light"
               className="toggle theme-controller"
-              checked={theme === "light"}
+              defaultChecked={theme === "light"}
               onClick={() => {
                 setTheme(theme === "dark" ? "light" : "dark");
                 localStorage.setItem(
