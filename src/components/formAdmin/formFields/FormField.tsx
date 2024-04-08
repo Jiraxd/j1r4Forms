@@ -6,6 +6,8 @@ import {
 } from "../../../../actions/dbUpdates";
 import { TextAnswer } from "../answerFields/textAnswer";
 import { NumberAnswer } from "../answerFields/numberAnswer";
+import { DateAnswer } from "../answerFields/dateAnswer";
+import { TimeAnswer } from "../answerFields/timeAnswer";
 
 export const FormField = ({
   field,
@@ -101,11 +103,21 @@ export const FormField = ({
           <NumberAnswer formid={formid} field={field} />
         </div>
       )}
+            {fieldAnswerType === 2 && (
+        <div className="w-full p-6 pt-2 pb-6">
+          <DateAnswer formid={formid} field={field} />
+        </div>
+      )}
+            {fieldAnswerType === 3 && (
+        <div className="w-full p-6 pt-2 pb-6">
+          <TimeAnswer formid={formid} field={field} />
+        </div>
+      )}
     </div>
   );
 };
 
-const answerList = ["Text Answer", "Number Answer"];
+const answerList = ["Text Answer", "Number Answer", "Date", "Time"];
 
 const getAnswerType = (answerIndex: number) => {
   return answerList[answerIndex];

@@ -25,41 +25,44 @@ export const NavBarForms = ({ theme, onThemeChange }: Props) => {
   return (
     <div>
       <div
-        className="fixed w-full top-0 bg-base-300"
-        style={{
-          zIndex: 200,
-        }}
-      >
-        <div className="flex w-full min-h-16 items-center">
-          <div className="flex">
-            <img
-              src={session?.user?.image || "/images/default.webp"}
-              alt={"logo"}
-              width={32}
-              height={32}
-              className="ml-5"
-            />
-            <p className="ml-3 font-bold text-xl text-base-content">
-              {`Welcome back, ${session?.user?.name || "user"}`}
-            </p>
-          </div>
-          <div className="flex cursor-pointer gap-2 mr-6 ml-auto">
-            <Moonicon color={theme === "dark" ? "white" : "black"} />
-            <input
-              type="checkbox"
-              value="light"
-              className="toggle theme-controller"
-              defaultChecked={theme === "light"}
-              onClick={() => {
-                onThemeChange(theme === "dark" ? "light" : "dark");
-              }}
-            />
-            <Sunicon color={theme === "dark" ? "white" : "black"} />
-          </div>
-          <EnterSettingsBTN>
-            <button className="btn btn-accent w-32 mr-5">Settings</button>
-          </EnterSettingsBTN>
+      className="fixed w-full top-0 bg-base-300"
+      style={{
+        zIndex: 200,
+      }}
+    >
+      <div className="flex w-full min-h-16 items-center">
+        <div className="flex">
+          <Image
+            src={session?.user?.image || "/images/default.webp"}
+            alt={"logo"}
+            width={32}
+            height={32}
+            className="ml-5"
+          />
+          <p className="ml-3 font-bold text-xl text-base-content">
+            {`Welcome back, ${session?.user?.name || "user"}`}
+          </p>
         </div>
+        <div className="flex cursor-pointer gap-2 mx-auto">
+          <Moonicon color={theme === "dark" ? "white" : "black"} />
+          <input
+            type="checkbox"
+            value="light"
+            className="toggle theme-controller"
+            checked={theme === "light"}
+            onClick={() => {
+              onThemeChange(theme === "dark" ? "light" : "dark");
+            }}
+          />
+          <Sunicon color={theme === "dark" ? "white" : "black"} />
+        </div>
+        <EnterSettingsBTN>
+          <button className="btn btn-accent w-32 mr-5">Settings</button>
+        </EnterSettingsBTN>
+      </div>
+    </div>
+    <div className="flex min-h-screen flex-col items-center mt-40">
+      <FormPreview />
       </div>
     </div>
   );
