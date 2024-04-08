@@ -68,7 +68,8 @@ export const addNewField = async(id:string, position:number) => {
           Answers:{
             create:{
               answerName: "Untitled Answer",
-              answerType: 0
+              answerType: 0,
+              answerPos: 0
             }
           }
         },
@@ -104,4 +105,67 @@ export const UpdateFieldAnswerType = async(id:string, position:number, type:numb
       }
     }
   })
+}
+
+export const UpdateAnswerTitle = async(id:string, position:number,  fieldid:number, answerTitle:string, answerid:string) => {
+  await db.savedForm.update({
+    where: {
+      formid: id,
+    },
+    data:{
+      fields:{
+        update:{
+          where:{
+          fieldID: fieldid,
+          },
+          data:{
+            Answers:{
+              update:{
+                where:{
+                  answerID: answerid
+                },
+                data:{
+                  answerName: answerTitle
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  })
+}
+
+export const addNewAnswer = async(id:string, position:number,  fieldid:number, answerPos:number) => {
+  const answer = await db.savedForm.update({
+    where: {
+      formid: id,
+    },
+    data:{
+      fields:{
+        update:{
+          where:{
+           fieldID: fieldid
+          },
+          data:{
+            Answers:{
+              create:{
+                answerName: "Untitled Option",
+                answerType: 0,
+                answerPos: answerPos
+              }
+            }
+          }
+        }
+      }
+    },
+    include: {
+      fields: {
+        include: {
+          Answers: true,
+        },
+      }
+    }
+  })
+  return answer.fields.find(f => f.position === position)?.Answers;
 }

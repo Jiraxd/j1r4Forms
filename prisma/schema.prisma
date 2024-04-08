@@ -60,10 +60,12 @@ model FormField {
 }
 
 model FormAnswer {
-  formfield  FormField @relation(fields: [fieldid], references: [fieldID])
-  fieldid    Int       @id
+  formfield  FormField @relation(fields: [fieldID], references: [fieldID])
+  fieldID    Int
+  answerID   String    @id @default(cuid())
   answerType Int
   answerName String
+  answerPos  Int
 }
 
 model UserAnswered {

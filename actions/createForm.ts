@@ -20,7 +20,8 @@ export const createFormServer = async(id:string) => {
               Answers:{
                 create:{
                   answerName: "Untitled Answer",
-                  answerType: 0
+                  answerType: 0,
+                  answerPos: 0
                 }
               }
             },
