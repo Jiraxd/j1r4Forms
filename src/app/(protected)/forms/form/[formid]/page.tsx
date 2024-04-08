@@ -52,14 +52,14 @@ const FormPage = () => {
         form={form}
       />
       <FormWrapper form={form} callback={callbackUpdateFormClient} />
-      <dialog id="save_popup" className="modal">
+      <dialog id="save_popup" className="modal border-transparent">
         <div className="modal-box">
           <h3 className="font-bold text-lg">No need to save!</h3>
           <p className="py-4">
             Your changes are saved automatically upon every change
           </p>
         </div>
-        <form method="dialog" className="modal-backdrop">
+        <form method="dialog" className="modal-backdrop border-transparent">
           <button>close</button>
         </form>
       </dialog>
