@@ -7,7 +7,7 @@ import {
 } from "../../../../actions/dbUpdates";
 import { db } from "@/lib/db";
 
-export const RadioButtons = ({
+export const CheckboxAnswer = ({
   field,
   formid,
 }: {
@@ -44,9 +44,8 @@ export const RadioButtons = ({
             <div className="form-control">
               <label className="label">
                 <input
-                  type="radio"
-                  name="radio-1"
-                  className="radio cursor-default"
+                  type="checkbox"
+                  className="checkbox cursor-default"
                   checked={false}
                   onChange={() => {}}
                 />
@@ -140,9 +139,8 @@ export const RadioButtons = ({
         }}
       >
         <input
-          type="radio"
-          name="radio-1"
-          className="radio"
+          type="checkbox"
+          className="checkbox"
           checked={false}
           onChange={() => {}}
         />

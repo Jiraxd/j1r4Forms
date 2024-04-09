@@ -169,3 +169,28 @@ export const addNewAnswer = async(id:string, position:number,  fieldid:number, a
   })
   return answer.fields.find(f => f.position === position)?.Answers;
 }
+
+export const removeAnswer = async(id:string, fieldid:number, answerPos:number, answerID:string) => {
+  await db.savedForm.update({
+    where: {
+      formid: id,
+    },
+    data:{
+      fields:{
+        update:{
+          where:{
+           fieldID: fieldid
+          },
+          data:{
+            Answers:{
+              delete:{
+                answerID: answerID,
+                answerPos: answerPos
+              }
+            }
+          }
+        }
+      }
+    }
+  });
+}

@@ -9,6 +9,7 @@ import { NumberAnswer } from "../answerFields/numberAnswer";
 import { DateAnswer } from "../answerFields/dateAnswer";
 import { TimeAnswer } from "../answerFields/timeAnswer";
 import { RadioButtons } from "../answerFields/OneAnswer";
+import { CheckboxAnswer } from "../answerFields/CheckboxAnswer";
 
 export const FormField = ({
   field,
@@ -119,6 +120,11 @@ export const FormField = ({
           <RadioButtons formid={formid} field={field} />
         </div>
       )}
+      {fieldAnswerType === 5 && (
+        <div className="w-full p-6 pt-2 pb-6">
+          <CheckboxAnswer formid={formid} field={field} />
+        </div>
+      )}
     </div>
   );
 };
@@ -129,6 +135,7 @@ const answerList = [
   "Date",
   "Time",
   "Radio Buttons",
+  "Checkboxes",
 ];
 
 const getAnswerType = (answerIndex: number) => {

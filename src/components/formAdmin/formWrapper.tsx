@@ -34,7 +34,7 @@ export const FormWrapper = ({
           />
           <FormMenu form={form} callback={callbackCreateField} />
         </div>
-        <div className="flex flex-col items-center mb-20">
+        <div className="flex flex-col items-center pb-40">
           {(form.fields as []).length === 0 ? (
             <div>Create new questions in the menu!</div>
           ) : (
