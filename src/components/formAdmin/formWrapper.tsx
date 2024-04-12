@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FormField } from "./formFields/FormField";
 import { FormTitle } from "./formFields/formTitle";
 import { FormMenu } from "./formMenu";
+import { updatePositionField } from "../../../actions/dbUpdates";
 
 export const FormWrapper = ({
   form,
@@ -15,11 +16,69 @@ export const FormWrapper = ({
   const callbackCreateField = (formnew: any) => {
     callback(formnew);
   };
+  const callbackSelectedField = (fieldIndex: number) => {
+    setSelectedField(fieldIndex);
+  };
   const callbackAnswerChange = (fieldIndex: number, answerindex: number) => {
-    const newform = form;
+    const newform = { ...form };
     newform.fields[fieldIndex].fieldAnswerType = answerindex;
     callback(newform);
   };
+  const callbackPositionChange = (
+    pos: number,
+    up: boolean
+  ) => {
+    const newform = { ...form };
+    const field = newform.fields.find((f: any) => f.position === pos);
+    if (!field) return;
+    if (up) {
+      if (field.position === newform.fields.length - 1) return;
+      const replace = newform.fields.find(
+        (f: any) => f.position === field.position + 1
+      );
+      replace.position--;
+      field.position++;
+      callback({ ...newform });
+      updatePositions(
+        field.position,
+        replace.position,
+        up,
+        field.fieldID,
+        replace.fieldID
+      );
+    } else {
+      if (field.position === 0) return;
+      const replace = newform.fields.find(
+        (f: any) => f.position === field.position - 1
+      );
+      replace.position++;
+      field.position--;
+      callback({ ...newform });
+      updatePositions(
+        field.position,
+        replace.position,
+        up,
+        field.fieldID,
+        replace.fieldID
+      );
+    }
+  };
+
+  async function updatePositions(
+    updatePos: number,
+    replacePos: number,
+    up: boolean,
+    fieldID: number,
+    fieldIDReplace: number
+  ) {
+    await updatePositionField(
+      updatePos,
+      fieldID,
+      fieldIDReplace,
+      replacePos,
+      form.formid
+    );
+  }
   return (
     <div className="overflow-x-auto">
       <div className="mt-32 mx-auto w-[770px]">
@@ -34,6 +93,7 @@ export const FormWrapper = ({
           />
           <FormMenu form={form} callback={callbackCreateField} />
         </div>
+
         <div className="flex flex-col items-center pb-40">
           {(form.fields as []).length === 0 ? (
             <div>Create new questions in the menu!</div>
@@ -51,7 +111,7 @@ export const FormWrapper = ({
               .map((field: any, index: number) => {
                 return (
                   <div
-                    key={index}
+                    key={field.position}
                     className="mt-10"
                     onClick={() => {
                       setSelectedField(index);
@@ -63,6 +123,7 @@ export const FormWrapper = ({
                       formid={form.formid}
                       callback={callbackAnswerChange}
                       indexForm={index}
+                      callbackPosition={callbackPositionChange}
                     />
                   </div>
                 );

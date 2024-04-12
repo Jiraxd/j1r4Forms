@@ -194,3 +194,45 @@ export const removeAnswer = async(id:string, fieldid:number, answerPos:number, a
     }
   });
 }
+
+export const updatePositionField = async(updatePos: number, fieldID:number,
+  fieldIDReplace:number,
+  replacePos: number,
+  formid:string) => {
+      await db.savedForm.update({
+        where: {
+          formid: formid,
+        },
+        data:{
+          fields:{
+            update:{
+              where:{
+                fieldID: fieldID
+              },
+              data:{
+                position: updatePos
+              }
+            }
+          }
+        }
+      });
+      await db.savedForm.update({
+
+       where: {
+          formid: formid,
+        },
+        data:{
+          fields:{
+            update:{
+              where:{
+                fieldID: fieldIDReplace
+              },
+              data:{
+                position: replacePos
+              }
+            }
+          }
+        }
+      });
+   
+}

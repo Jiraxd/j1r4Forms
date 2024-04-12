@@ -7,7 +7,6 @@ import { LoginButton } from "./auth/LoginButton";
 import { RegisterButton } from "./auth/RegisterButton";
 import { LogReg } from "./mainPage/logreg";
 
-// https://dndkit.com
 export const HomePage = () => {
   useEffect(() => {
     let localTheme = localStorage.getItem("theme");

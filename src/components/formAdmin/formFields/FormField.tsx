@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   UpdateFieldAnswerType,
   fieldUpdateTitle,
@@ -17,12 +17,14 @@ export const FormField = ({
   formid,
   callback,
   indexForm,
+  callbackPosition,
 }: {
   field: any;
   selected: boolean;
   formid: string;
   callback: Function;
   indexForm: number;
+  callbackPosition: Function;
 }) => {
   const [fieldTitle, setTitle] = useState<string>(field.fieldTitle);
   const [fieldAnswerType, setAnswerType] = useState<number>(
@@ -32,6 +34,11 @@ export const FormField = ({
     if (fieldTitle === field.fieldTitle) return;
     await fieldUpdateTitle(formid, field.fieldID, fieldTitle);
   };
+
+  useEffect(() => {
+    setTitle(field.fieldTitle);
+    setAnswerType(field.fieldAnswerType);
+  }, [field.fieldTitle, field.fieldAnswerType]);
   return (
     <div className="flex rounded-lg flex-col w-full bg-slate-600 min-w-[770px]">
       <div className="w-full p-6 py-4 flex justify-between">
@@ -43,56 +50,74 @@ export const FormField = ({
           onBlur={() => handleNameChange()}
           spellCheck={false}
         />
-        <div
-          className={`dropdown dropdown-end opacity-${
-            selected ? "100" : "0"
-          } transition-opacity duration-300 ease-in-out`}
-        >
+        <div className="flex gap-2">
           <div
-            tabIndex={0}
-            role="button"
-            className="btn bg-slate-700 text-slate-300 border-transparent"
+            className={`btn bg-slate-700 text-slate-300 border-transparent opacity-${
+              selected ? "100" : "0"
+            } transition-opacity duration-300 ease-in-out`}
+            onClick={() => callbackPosition(field.position, false)}
           >
-            {getAnswerType(fieldAnswerType)}
-            <div
-              className="top-[22px] right-[19px]"
-              style={{
-                borderTopColor: "rgb(128,149, 174)",
-                borderBottomColor: "rgb(128,149, 174)",
-                borderLeftColor: "transparent",
-                borderRightColor: "transparent",
-                borderWidth: "5px 5px 0 5px",
-              }}
-            />
+            ↑
           </div>
-          <ul
-            tabIndex={0}
-            className="dropdown-content z-[1] menu p-2 shadow bg-slate-700 text-slate-300 rounded-box w-52"
+          <div
+            className={`btn bg-slate-700 text-slate-300 border-transparent opacity-${
+              selected ? "100" : "0"
+            } transition-opacity duration-300 ease-in-out`}
+            onClick={() => callbackPosition(field.position, true)}
           >
-            {answerList
-              .filter((value, index) => index != fieldAnswerType)
-              .map((answer, index) => (
-                <li
-                  key={index}
-                  className="cursor-pointer"
-                  onClick={async () => {
-                    let indexAnswerList = answerList.findIndex(
-                      (value) => value === answer
-                    );
-                    callback(indexForm, indexAnswerList);
-                    setAnswerType(indexAnswerList);
-                    await UpdateFieldAnswerType(
-                      formid,
-                      field.position,
-                      indexAnswerList,
-                      field.fieldID
-                    );
-                  }}
-                >
-                  <a>{answer}</a>
-                </li>
-              ))}
-          </ul>
+            ↓
+          </div>
+          <div
+            className={`dropdown dropdown-end opacity-${
+              selected ? "100" : "0"
+            } transition-opacity duration-300 ease-in-out`}
+          >
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn bg-slate-700 text-slate-300 border-transparent"
+            >
+              {getAnswerType(fieldAnswerType)}
+              <div
+                className="top-[22px] right-[19px]"
+                style={{
+                  borderTopColor: "rgb(128,149, 174)",
+                  borderBottomColor: "rgb(128,149, 174)",
+                  borderLeftColor: "transparent",
+                  borderRightColor: "transparent",
+                  borderWidth: "5px 5px 0 5px",
+                }}
+              />
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content z-[1] menu p-2 shadow bg-slate-700 text-slate-300 rounded-box w-52"
+            >
+              {answerList
+                .filter((value, index) => index != fieldAnswerType)
+                .map((answer, index) => (
+                  <li
+                    key={index}
+                    className="cursor-pointer"
+                    onClick={async () => {
+                      let indexAnswerList = answerList.findIndex(
+                        (value) => value === answer
+                      );
+                      callback(indexForm, indexAnswerList);
+                      setAnswerType(indexAnswerList);
+                      await UpdateFieldAnswerType(
+                        formid,
+                        field.position,
+                        indexAnswerList,
+                        field.fieldID
+                      );
+                    }}
+                  >
+                    <a>{answer}</a>
+                  </li>
+                ))}
+            </ul>
+          </div>
         </div>
       </div>
       {fieldAnswerType === 0 && (
