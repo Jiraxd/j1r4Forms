@@ -10,6 +10,8 @@ import { DateAnswer } from "../answerFields/dateAnswer";
 import { TimeAnswer } from "../answerFields/timeAnswer";
 import { RadioButtons } from "../answerFields/OneAnswer";
 import { CheckboxAnswer } from "../answerFields/CheckboxAnswer";
+import React from "react";
+import { saveImageServer } from "../../../../actions/saveImageServer";
 
 export const FormField = ({
   field,
@@ -34,7 +36,6 @@ export const FormField = ({
     if (fieldTitle === field.fieldTitle) return;
     await fieldUpdateTitle(formid, field.fieldID, fieldTitle);
   };
-
   useEffect(() => {
     setTitle(field.fieldTitle);
     setAnswerType(field.fieldAnswerType);

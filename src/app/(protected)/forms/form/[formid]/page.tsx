@@ -10,6 +10,9 @@ import { NavBarFormMain } from "@/components/formAdmin/navbarFormsMain";
 import { FormWrapper } from "@/components/formAdmin/formWrapper";
 import { Prisma } from "@prisma/client";
 import Mousetrap from "mousetrap";
+import React from "react";
+import html2canvas from "html2canvas-pro";
+import { saveImageServer } from "../../../../../../actions/saveImageServer";
 
 const FormPage = () => {
   const [theme, setTheme] = useState<string>("dark");
@@ -22,6 +25,7 @@ const FormPage = () => {
     async function getxd() {
       const formtmp = await getSavedForm(pathname.split("/")[3]);
       setForm(formtmp);
+      captureScreenshot();
     }
     getxd();
   }, []);
@@ -32,11 +36,33 @@ const FormPage = () => {
     return false;
   });
   const callbackUpdateFormClient = (formupdated: any) => {
+    captureScreenshot();
     setForm(formupdated);
   };
   const handleThemeChange = (newTheme: string) => {
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
+  };
+
+  const captureScreenshot = async () => {
+    try {
+      const elementToCapture = document.getElementById(
+        "form_wrapper"
+      ) as HTMLElement;
+      const canvas = await html2canvas(elementToCapture, {
+        backgroundColor: "#D5D5D5",
+        useCORS: true,
+        windowHeight: 1080,
+        windowWidth: 1920,
+        height: 1080,
+        width: 1920,
+      });
+      const imageDataUrl = canvas
+        .toDataURL("image/webp")
+        .replace("data:image/webp;base64,", "");
+      console.log(imageDataUrl);
+      saveImageServer(imageDataUrl, pathname.split("/")[3]);
+    } catch (e) {}
   };
   if (form == null)
     return (
@@ -51,7 +77,9 @@ const FormPage = () => {
         onThemeChange={handleThemeChange}
         form={form}
       />
-      <FormWrapper form={form} callback={callbackUpdateFormClient} />
+      <div className="overflow-y-auto" id="form_wrapper">
+        <FormWrapper form={form} callback={callbackUpdateFormClient} />
+      </div>
       <dialog id="save_popup" className="modal border-transparent">
         <div className="modal-box">
           <h3 className="font-bold text-lg">No need to save!</h3>

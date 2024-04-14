@@ -1,4 +1,5 @@
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 type Props = {
   formName: string;
@@ -10,11 +11,19 @@ export const FormDisplay = ({ formName, formID }: Props) => {
   return (
     <button
       className="cursor-pointer flex-col items-center"
-      onClick={() => router.push(`/forms/form/${formID}`)}
+      onClick={() => {
+        router.push(`/forms/form/${formID}
+        `);
+      }}
     >
-      {/*tady bude preview*/}
-      <div>{formName}</div>
-      <div>{formID}</div>
+      <img
+        src={`/previews/${formID}.webp`}
+        className="min-w-[256px]"
+        alt="logo"
+        width={256}
+        height={128}
+      />
+      <div className="mt-4">{formName}</div>
     </button>
   );
 };
