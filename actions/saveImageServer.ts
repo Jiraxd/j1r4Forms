@@ -3,7 +3,8 @@ import * as fs from 'fs';
 import path from 'path';
 
 export const saveImageServer = async(base64:string, name:string) => {
+    if(!fs.existsSync(path.join(process.cwd(),'/public/previews/')))
+        await fs.promises.mkdir(path.join(process.cwd(),'/public/previews/'), { recursive: true });
     const filePath = path.join(process.cwd(),`/public/previews/${name}.webp`); 
-    console.log(filePath);
     await fs.promises.writeFile(filePath, base64, 'base64');
 }

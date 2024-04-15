@@ -60,7 +60,6 @@ const FormPage = () => {
       const imageDataUrl = canvas
         .toDataURL("image/webp")
         .replace("data:image/webp;base64,", "");
-      console.log(imageDataUrl);
       saveImageServer(imageDataUrl, pathname.split("/")[3]);
     } catch (e) {}
   };
