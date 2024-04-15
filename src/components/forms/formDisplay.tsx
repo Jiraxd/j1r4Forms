@@ -14,7 +14,10 @@ export const FormDisplay = ({ formName, formID }: Props) => {
   const router = useRouter();
   useEffect(() => {
     async function getImage() {
-      const response = await list({ prefix: formID });
+      const response = await list({
+        prefix: formID,
+        token: process.env.BLOB_TOKEN,
+      });
       console.log(response);
       setImageURL(response.blobs[0].url);
     }

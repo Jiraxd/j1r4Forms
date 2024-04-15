@@ -8,6 +8,7 @@ export const saveImageServer = async (base64: string, name: string) => {
     await put(`${name}.webp`, buffer, {
       access: "public",
       contentType: "image/webp",
+      token: process.env.BLOB_TOKEN,
     });
   } else {
     const filePath = `./public/previews/${name}.webp`;
