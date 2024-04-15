@@ -25,7 +25,7 @@ const FormPage = () => {
     async function getxd() {
       const formtmp = await getSavedForm(pathname.split("/")[3]);
       setForm(formtmp);
-      captureScreenshot();
+      setTimeout(captureScreenshot, 1000);
     }
     getxd();
   }, []);

@@ -12,6 +12,7 @@ import { RadioButtons } from "../answerFields/OneAnswer";
 import { CheckboxAnswer } from "../answerFields/CheckboxAnswer";
 import React from "react";
 import { saveImageServer } from "../../../../actions/saveImageServer";
+import { LinealScale } from "../answerFields/linealScale";
 
 export const FormField = ({
   field,
@@ -151,6 +152,11 @@ export const FormField = ({
           <CheckboxAnswer formid={formid} field={field} />
         </div>
       )}
+      {fieldAnswerType === 6 && (
+        <div className="w-full p-6 pt-2 pb-6">
+          <LinealScale formid={formid} field={field} />
+        </div>
+      )}
     </div>
   );
 };
@@ -162,6 +168,7 @@ const answerList = [
   "Time",
   "Radio Buttons",
   "Checkboxes",
+  "Lineal Scale",
 ];
 
 const getAnswerType = (answerIndex: number) => {
