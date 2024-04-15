@@ -1,9 +1,16 @@
 "use server";
 import * as fs from "fs";
-import path from "path";
+import { put } from "@vercel/blob";
 
 export const saveImageServer = async (base64: string, name: string) => {
-  const filePath = path.join(process.cwd(), `public/${name}.webp`);
-  console.error(fs.readdirSync(process.cwd()).toString());
-  await fs.promises.writeFile(filePath, base64, "base64");
+  if (process.env.NODE_ENV === "production") {
+    const buffer = Buffer.from(base64, "base64");
+    await put(`${name}.webp`, buffer, {
+      access: "public",
+      contentType: "image/webp",
+    });
+  } else {
+    const filePath = `./public/previews/${name}.webp`;
+    await fs.promises.writeFile(filePath, base64, "base64");
+  }
 };
