@@ -17,7 +17,7 @@ export const FormDisplay = ({ formName, formID }: Props) => {
       }}
     >
       <img
-        src={`/previews/${formID}.webp`}
+        src={`/${formID}.webp`}
         className="min-w-[256px]"
         alt="logo"
         width={256}

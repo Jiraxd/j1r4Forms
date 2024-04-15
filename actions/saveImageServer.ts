@@ -4,6 +4,5 @@ import path from 'path';
 
 export const saveImageServer = async(base64:string, name:string) => {
     const filePath = path.join(process.cwd(),`public/${name}.webp`); 
-    console.log(fs.readdirSync(process.cwd()))
     await fs.promises.writeFile(filePath, base64, 'base64');
 }
