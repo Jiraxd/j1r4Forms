@@ -3,6 +3,7 @@ import Image from "next/image";
 import { list } from "@vercel/blob";
 import { useEffect, useState } from "react";
 import { LoaderCircle } from "../loader";
+import { getBlob } from "../../../actions/saveImageServer";
 
 type Props = {
   formName: string;
@@ -14,10 +15,7 @@ export const FormDisplay = ({ formName, formID }: Props) => {
   const router = useRouter();
   useEffect(() => {
     async function getImage() {
-      const response = await list({
-        prefix: formID,
-        token: process.env.BLOB_TOKEN,
-      });
+      const response = await getBlob(formID);
       console.log(response);
       setImageURL(response.blobs[0].url);
     }
