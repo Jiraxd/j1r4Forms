@@ -187,7 +187,7 @@ export const LinealScale = ({
           {Array(MaxNumber + 1 - MinNumber)
             .fill("x")
             .map((value, index) => (
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center" key={index}>
                 <div>{MinNumber === 0 ? index : index + 1}</div>
                 <input
                   type="radio"
