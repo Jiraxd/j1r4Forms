@@ -11,7 +11,7 @@ export const saveImageServer = async (base64: string, name: string) => {
       addRandomSuffix: false,
     });
   } else {
-    const filePath = `./public/previews/${name}.webp`;
+    const filePath = `./public/${name}.webp`;
     await fs.promises.writeFile(filePath, base64, "base64");
   }
 };

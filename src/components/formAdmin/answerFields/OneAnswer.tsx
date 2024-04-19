@@ -66,7 +66,6 @@ export const RadioButtons = ({
               onBlur={async () => {
                 await UpdateAnswerTitle(
                   formid,
-                  field.position,
                   field.fieldID,
                   answerTitles[index],
                   answers[index].answerID

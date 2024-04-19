@@ -16,18 +16,13 @@ export const FormWrapper = ({
   const callbackCreateField = (formnew: any) => {
     callback(formnew);
   };
-  const callbackSelectedField = (fieldIndex: number) => {
-    setSelectedField(fieldIndex);
-  };
-  const callbackAnswerChange = (fieldIndex: number, answerindex: number) => {
+  const callbackAnswerChange = (fieldPos: number, answerindex: number) => {
     const newform = { ...form };
-    newform.fields[fieldIndex].fieldAnswerType = answerindex;
+    newform.fields.find((f: any) => f.position === fieldPos).fieldAnswerType =
+      answerindex;
     callback(newform);
   };
-  const callbackPositionChange = (
-    pos: number,
-    up: boolean
-  ) => {
+  const callbackPositionChange = (pos: number, up: boolean) => {
     const newform = { ...form };
     const field = newform.fields.find((f: any) => f.position === pos);
     if (!field) return;
@@ -94,7 +89,7 @@ export const FormWrapper = ({
           <FormMenu form={form} callback={callbackCreateField} />
         </div>
 
-        <div className="flex flex-col items-center pb-40">
+        <div className="flex flex-col items-center pb-60">
           {(form.fields as []).length === 0 ? (
             <div>Create new questions in the menu!</div>
           ) : (
@@ -114,12 +109,13 @@ export const FormWrapper = ({
                     key={field.position}
                     className="mt-10"
                     onClick={() => {
-                      setSelectedField(index);
+                      setSelectedField(field.position);
                     }}
                   >
                     <FormField
+                      key={field.position}
                       field={field}
-                      selected={selectedField === index}
+                      selected={selectedField === field.position}
                       formid={form.formid}
                       callback={callbackAnswerChange}
                       indexForm={index}

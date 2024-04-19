@@ -13,6 +13,7 @@ import { CheckboxAnswer } from "../answerFields/CheckboxAnswer";
 import React from "react";
 import { saveImageServer } from "../../../../actions/saveImageServer";
 import { LinealScale } from "../answerFields/linealScale";
+import { SelectionGrid } from "../answerFields/SelectionGrid";
 
 export const FormField = ({
   field,
@@ -105,7 +106,7 @@ export const FormField = ({
                       let indexAnswerList = answerList.findIndex(
                         (value) => value === answer
                       );
-                      callback(indexForm, indexAnswerList);
+                      callback(field.position, indexAnswerList);
                       setAnswerType(indexAnswerList);
                       await UpdateFieldAnswerType(
                         formid,
@@ -154,7 +155,12 @@ export const FormField = ({
       )}
       {fieldAnswerType === 6 && (
         <div className="w-full p-6 pt-2 pb-6">
-          <LinealScale formid={formid} field={field} />
+          <LinealScale formid={formid} field={field} selected={selected} />
+        </div>
+      )}
+            {fieldAnswerType === 7 && (
+        <div className="w-full p-6 pt-2 pb-6">
+          <SelectionGrid formid={formid} field={field} selected={selected} />
         </div>
       )}
     </div>
@@ -169,6 +175,7 @@ const answerList = [
   "Radio Buttons",
   "Checkboxes",
   "Lineal Scale",
+  "Selection Grid"
 ];
 
 const getAnswerType = (answerIndex: number) => {

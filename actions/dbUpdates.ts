@@ -2,19 +2,23 @@
 
 import { db } from "@/lib/db";
 
-export const updateFormName = async(id:string, name:string) => {
-    await db.savedForm.update({
-        where: {
-          formid: id,
-        },
-        data: {
-          name: name,
-        },
-      });
-}
+export const updateFormName = async (id: string, name: string) => {
+  await db.savedForm.update({
+    where: {
+      formid: id,
+    },
+    data: {
+      name: name,
+    },
+  });
+};
 
-export const updateTitleDesc = async(id:string, type:string, text:string) => {
-  switch(type){
+export const updateTitleDesc = async (
+  id: string,
+  type: string,
+  text: string
+) => {
+  switch (type) {
     case "title":
       await db.savedForm.update({
         where: {
@@ -33,9 +37,8 @@ export const updateTitleDesc = async(id:string, type:string, text:string) => {
           formdescription: text,
         },
       });
-    break;
-}
-
+      break;
+  }
 };
 
 export const fieldUpdateTitle = async (
@@ -44,17 +47,17 @@ export const fieldUpdateTitle = async (
   text: string
 ) => {
   await db.formField.update({
- where:{
-  formid: id,
-  fieldID: position
- },
- data:{
-  fieldTitle: text,
- }
+    where: {
+      formid: id,
+      fieldID: position,
+    },
+    data: {
+      fieldTitle: text,
+    },
   });
 };
 
-export const addNewField = async(id:string, position:number) => {
+export const addNewField = async (id: string, position: number) => {
   const form = await db.savedForm.update({
     where: {
       formid: id,
@@ -65,13 +68,13 @@ export const addNewField = async(id:string, position:number) => {
           fieldTitle: "Untitled Field",
           fieldAnswerType: 0,
           position: position,
-          Answers:{
-            create:{
+          Answers: {
+            create: {
               answerName: "Untitled Answer",
               answerType: 0,
-              answerPos: 0
-            }
-          }
+              answerPos: 0,
+            },
+          },
         },
       },
     },
@@ -80,159 +83,180 @@ export const addNewField = async(id:string, position:number) => {
         include: {
           Answers: true,
         },
-      }
-    }
+      },
+    },
   });
   return form;
-}
+};
 
-export const UpdateFieldAnswerType = async(id:string, position:number, type:number, fieldid:number) => {
+export const UpdateFieldAnswerType = async (
+  id: string,
+  position: number,
+  type: number,
+  fieldid: number
+) => {
   await db.savedForm.update({
     where: {
       formid: id,
     },
-    data:{
-      fields:{
-        update:{
-          where:{
+    data: {
+      fields: {
+        update: {
+          where: {
             position: position,
-           fieldID: fieldid
+            fieldID: fieldid,
           },
-          data:{
-            fieldAnswerType: type
-          }
-        }
-      }
-    }
-  })
-}
+          data: {
+            fieldAnswerType: type,
+          },
+        },
+      },
+    },
+  });
+};
 
-export const UpdateAnswerTitle = async(id:string, position:number,  fieldid:number, answerTitle:string, answerid:string) => {
+export const UpdateAnswerTitle = async (
+  id: string,
+  fieldid: number,
+  answerTitle: string,
+  answerid: string
+) => {
   await db.savedForm.update({
     where: {
       formid: id,
     },
-    data:{
-      fields:{
-        update:{
-          where:{
-          fieldID: fieldid,
+    data: {
+      fields: {
+        update: {
+          where: {
+            fieldID: fieldid,
           },
-          data:{
-            Answers:{
-              update:{
-                where:{
-                  answerID: answerid
+          data: {
+            Answers: {
+              update: {
+                where: {
+                  answerID: answerid,
                 },
-                data:{
-                  answerName: answerTitle
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  })
-}
+                data: {
+                  answerName: answerTitle,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+};
 
-export const addNewAnswer = async(id:string, position:number,  fieldid:number, answerPos:number) => {
+export const addNewAnswer = async (
+  id: string,
+  position: number,
+  fieldid: number,
+  answerPos: number
+) => {
   const answer = await db.savedForm.update({
     where: {
       formid: id,
     },
-    data:{
-      fields:{
-        update:{
-          where:{
-           fieldID: fieldid
+    data: {
+      fields: {
+        update: {
+          where: {
+            fieldID: fieldid,
           },
-          data:{
-            Answers:{
-              create:{
+          data: {
+            Answers: {
+              create: {
                 answerName: "Untitled Option",
                 answerType: 0,
-                answerPos: answerPos
-              }
-            }
-          }
-        }
-      }
+                answerPos: answerPos,
+              },
+            },
+          },
+        },
+      },
     },
     include: {
       fields: {
         include: {
           Answers: true,
         },
-      }
-    }
-  })
-  return answer.fields.find(f => f.position === position)?.Answers;
-}
+      },
+    },
+  });
+  return answer.fields.find((f) => f.position === position)?.Answers;
+};
 
-export const removeAnswer = async(id:string, fieldid:number, answerPos:number, answerID:string) => {
+export const removeAnswer = async (
+  id: string,
+  fieldid: number,
+  answerPos: number,
+  answerID: string
+) => {
   await db.savedForm.update({
     where: {
       formid: id,
     },
-    data:{
-      fields:{
-        update:{
-          where:{
-           fieldID: fieldid
+    data: {
+      fields: {
+        update: {
+          where: {
+            fieldID: fieldid,
           },
-          data:{
-            Answers:{
-              delete:{
+          data: {
+            Answers: {
+              delete: {
                 answerID: answerID,
-                answerPos: answerPos
-              }
-            }
-          }
-        }
-      }
-    }
+                answerPos: answerPos,
+              },
+            },
+          },
+        },
+      },
+    },
   });
-}
+};
 
-export const updatePositionField = async(updatePos: number, fieldID:number,
-  fieldIDReplace:number,
+export const updatePositionField = async (
+  updatePos: number,
+  fieldID: number,
+  fieldIDReplace: number,
   replacePos: number,
-  formid:string) => {
-      await db.savedForm.update({
-        where: {
-          formid: formid,
+  formid: string
+) => {
+  await db.savedForm.update({
+    where: {
+      formid: formid,
+    },
+    data: {
+      fields: {
+        update: {
+          where: {
+            fieldID: fieldID,
+          },
+          data: {
+            position: updatePos,
+          },
         },
-        data:{
-          fields:{
-            update:{
-              where:{
-                fieldID: fieldID
-              },
-              data:{
-                position: updatePos
-              }
-            }
-          }
-        }
-      });
-      await db.savedForm.update({
-
-       where: {
-          formid: formid,
+      },
+    },
+  });
+  await db.savedForm.update({
+    where: {
+      formid: formid,
+    },
+    data: {
+      fields: {
+        update: {
+          where: {
+            fieldID: fieldIDReplace,
+          },
+          data: {
+            position: replacePos,
+          },
         },
-        data:{
-          fields:{
-            update:{
-              where:{
-                fieldID: fieldIDReplace
-              },
-              data:{
-                position: replacePos
-              }
-            }
-          }
-        }
-      });
-   
-}
+      },
+    },
+  });
+};
