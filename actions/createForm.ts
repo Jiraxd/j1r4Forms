@@ -45,6 +45,16 @@ export const createFormServer = async (id: string) => {
                   answerType: 4,
                   answerPos: 0,
                 },
+                {
+                  answerName: "First Collumn",
+                  answerType: 5,
+                  answerPos: 0,
+                },
+                {
+                  answerName: "First Row",
+                  answerType: 6,
+                  answerPos: 0,
+                },
               ],
             },
           },

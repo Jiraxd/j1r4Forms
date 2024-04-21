@@ -47,6 +47,9 @@ export const CheckboxAnswer = ({
                   type="checkbox"
                   className="checkbox cursor-default"
                   checked={false}
+                  style={{
+                    borderColor: "rgb(209 213 219 / var(--tw-text-opacity))",
+                  }}
                   onChange={() => {}}
                 />
               </label>
@@ -140,6 +143,9 @@ export const CheckboxAnswer = ({
         <input
           type="checkbox"
           className="checkbox"
+          style={{
+            borderColor: "rgb(209 213 219 / var(--tw-text-opacity))",
+          }}
           checked={false}
           onChange={() => {}}
         />

@@ -47,6 +47,9 @@ export const RadioButtons = ({
                   type="radio"
                   name="radio-1"
                   className="radio cursor-default"
+                  style={{
+                    borderColor: "rgb(209 213 219 / var(--tw-text-opacity))",
+                  }}
                   checked={false}
                   onChange={() => {}}
                 />
@@ -142,6 +145,9 @@ export const RadioButtons = ({
           type="radio"
           name="radio-1"
           className="radio"
+          style={{
+            borderColor: "rgb(209 213 219 / var(--tw-text-opacity))",
+          }}
           checked={false}
           onChange={() => {}}
         />
