@@ -15,15 +15,17 @@ export const RadioButtons = ({
   formid: string;
 }) => {
   const [answers, setAnswers] = useState<any>(
-    field.Answers.toSorted((a: any, b: any) => {
-      if ((a as any).answerPos < (b as any).answerPos) {
-        return -1;
+    field.Answers.filter((f: any) => f.answerType === 0).toSorted(
+      (a: any, b: any) => {
+        if ((a as any).answerPos < (b as any).answerPos) {
+          return -1;
+        }
+        if ((a as any).answerPos > (b as any).answerPos) {
+          return 1;
+        }
+        return 0;
       }
-      if ((a as any).answerPos > (b as any).answerPos) {
-        return 1;
-      }
-      return 0;
-    })
+    )
   );
   const [answerTitles, setTitle] = useState<string[]>(
     field.Answers.toSorted((a: any, b: any) => {
@@ -136,7 +138,8 @@ export const RadioButtons = ({
             formid,
             field.position,
             field.fieldID,
-            answers.length
+            answers.length,
+            0
           );
           setAnswers(answer);
         }}

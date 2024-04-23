@@ -153,7 +153,8 @@ export const addNewAnswer = async (
   id: string,
   position: number,
   fieldid: number,
-  answerPos: number
+  answerPos: number,
+  answerType: number
 ) => {
   const answer = await db.savedForm.update({
     where: {
@@ -169,7 +170,7 @@ export const addNewAnswer = async (
             Answers: {
               create: {
                 answerName: "Untitled Option",
-                answerType: 0,
+                answerType: answerType,
                 answerPos: answerPos,
               },
             },
@@ -185,7 +186,9 @@ export const addNewAnswer = async (
       },
     },
   });
-  return answer.fields.find((f) => f.position === position)?.Answers;
+  return answer.fields
+    .find((f) => f.position === position)
+    ?.Answers.filter((f) => f.answerType === answerType);
 };
 
 export const removeAnswer = async (
