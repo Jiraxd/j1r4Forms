@@ -69,10 +69,44 @@ export const addNewField = async (id: string, position: number) => {
           fieldAnswerType: 0,
           position: position,
           Answers: {
-            create: {
-              answerName: "Untitled Answer",
-              answerType: 0,
-              answerPos: 0,
+            createMany: {
+              data: [
+                {
+                  answerName: "Untitled Answer 1",
+                  answerType: 0,
+                  answerPos: 0,
+                },
+                {
+                  answerName: "Minimum",
+                  answerType: 1,
+                  answerPos: 0,
+                },
+                {
+                  answerName: "Maximum",
+                  answerType: 2,
+                  answerPos: 0,
+                },
+                {
+                  answerName: "1",
+                  answerType: 3,
+                  answerPos: 0,
+                },
+                {
+                  answerName: "5",
+                  answerType: 4,
+                  answerPos: 0,
+                },
+                {
+                  answerName: "First Collumn",
+                  answerType: 5,
+                  answerPos: 0,
+                },
+                {
+                  answerName: "First Row",
+                  answerType: 6,
+                  answerPos: 0,
+                },
+              ],
             },
           },
         },
@@ -153,8 +187,8 @@ export const addNewAnswer = async (
   id: string,
   position: number,
   fieldid: number,
-  answerPos: number,
-  answerType: number
+  answerPosx: number,
+  answerTypex: number
 ) => {
   const answer = await db.savedForm.update({
     where: {
@@ -170,8 +204,8 @@ export const addNewAnswer = async (
             Answers: {
               create: {
                 answerName: "Untitled Option",
-                answerType: answerType,
-                answerPos: answerPos,
+                answerType: answerTypex,
+                answerPos: answerPosx,
               },
             },
           },
@@ -188,7 +222,7 @@ export const addNewAnswer = async (
   });
   return answer.fields
     .find((f) => f.position === position)
-    ?.Answers.filter((f) => f.answerType === answerType);
+    ?.Answers.filter((f) => f.answerType === answerTypex);
 };
 
 export const removeAnswer = async (
