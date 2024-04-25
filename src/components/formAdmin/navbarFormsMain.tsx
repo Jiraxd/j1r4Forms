@@ -8,6 +8,7 @@ import { db } from "@/lib/db";
 import { updateFormName } from "../../../actions/dbUpdates";
 import { Input } from "../ui/input";
 import { button } from "@nextui-org/react";
+import { ShareFormBtn } from "../forms/ShareFormBtn";
 
 type Props = {
   theme: string;
@@ -99,8 +100,11 @@ export const NavBarFormMain = ({ theme, onThemeChange, form }: Props) => {
             />
             <Sunicon color={theme === "dark" ? "white" : "black"} />
           </div>
+          <ShareFormBtn formid={form.formid}>
+            <button className="btn btn-info w-32 mr-5">Share</button>
+          </ShareFormBtn>
           <EnterSettingsBTN>
-            <button className="btn btn-accent w-32 mr-5">Settings</button>
+            <button className="btn btn-error w-32 mr-5">Settings</button>
           </EnterSettingsBTN>
         </div>
       </div>

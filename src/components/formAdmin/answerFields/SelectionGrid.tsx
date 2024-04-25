@@ -41,8 +41,6 @@ export const SelectionGrid = ({
         return 0;
       })
   );
-  console.log(rowAnswers);
-  console.log(columnAnswers);
   return (
     <div className="px-3">
       {selected ? (

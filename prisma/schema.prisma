@@ -39,6 +39,12 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
+model SharableLinkForm {
+  formid         String
+  link           String   @id @default(cuid())
+  expirationDate DateTime
+}
+
 model SavedForm {
   formid           String         @id @default(cuid())
   name             String
