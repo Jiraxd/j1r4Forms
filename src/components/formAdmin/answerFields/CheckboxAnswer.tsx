@@ -28,15 +28,17 @@ export const CheckboxAnswer = ({
     )
   );
   const [answerTitles, setTitle] = useState<string[]>(
-    field.Answers.toSorted((a: any, b: any) => {
-      if ((a as any).answerPos < (b as any).answerPos) {
-        return -1;
-      }
-      if ((a as any).answerPos > (b as any).answerPos) {
-        return 1;
-      }
-      return 0;
-    }).map((answer: any) => answer.answerName)
+    field.Answers.filter((f: any) => f.answerType === 0)
+      .toSorted((a: any, b: any) => {
+        if ((a as any).answerPos < (b as any).answerPos) {
+          return -1;
+        }
+        if ((a as any).answerPos > (b as any).answerPos) {
+          return 1;
+        }
+        return 0;
+      })
+      .map((answer: any) => answer.answerName)
   );
   return (
     <div className="px-3">
@@ -128,7 +130,7 @@ export const CheckboxAnswer = ({
             const newArr = [...prev];
             newArr.push({
               answerName: "Untitled Option",
-              answerType: 1,
+              answerType: 0,
               answerPos: answers.length,
             });
             return newArr;

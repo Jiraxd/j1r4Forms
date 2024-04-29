@@ -17,7 +17,6 @@ import { saveImageServer } from "../../../../../../actions/saveImageServer";
 const FormPage = () => {
   const [theme, setTheme] = useState<string>("dark");
   const [form, setForm] = useState<any>(null);
-  const [showModal, setShowModal] = useState<boolean>(false);
   const pathname = usePathname();
   useEffect(() => {
     let localTheme = localStorage.getItem("theme");

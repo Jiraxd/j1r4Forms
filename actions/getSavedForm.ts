@@ -1,10 +1,10 @@
 "use server";
 
-import {db} from "@/lib/db";
+import { db } from "@/lib/db";
 import { Prisma } from "@prisma/client";
-import cuid from 'cuid';
+import cuid from "cuid";
 
-export const getSavedForm = async(id:string) => { 
+export const getSavedForm = async (id: string) => {
   const form = await db.savedForm.findFirst({
     where: {
       formid: id,
@@ -14,8 +14,33 @@ export const getSavedForm = async(id:string) => {
         include: {
           Answers: true,
         },
-      }
-    }
+      },
+    },
   });
-      return form;
-}
+  return form;
+};
+
+export const getSavedFormClient = async (id: string) => {
+  const formid = await db.sharableLinkForm.findFirst({
+    where: {
+      link: id,
+    },
+  });
+  if (formid === null) {
+    return "null";
+  }
+  if (formid.expirationDate.getTime() !== 0) {
+    if (formid.expirationDate.getTime() < new Date().getTime()) {
+      return "expired";
+    }
+  }
+  const form = await db.savedForm.findFirst({
+    where: {
+      formid: formid.formid,
+    },
+    include: {
+      fields: true,
+    },
+  });
+  return form;
+};
