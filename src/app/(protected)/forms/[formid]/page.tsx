@@ -7,6 +7,8 @@ import {
   getSavedFormClient,
 } from "../../../../../actions/getSavedForm";
 import { LoaderCircle } from "@/components/loader";
+import { FormWrapperAnswers } from "@/components/formUser/FormWrapperAnswers";
+import { NavbarFormsUser } from "@/components/formUser/navbarFormsUser";
 
 const FormsPage = () => {
   const [form, setForm] = useState<any>(null);
@@ -21,7 +23,10 @@ const FormsPage = () => {
     }
     getxd();
   }, []);
-
+  const handleThemeChange = (newTheme: string) => {
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
   if (form == null)
     return (
       <div className="flex w-full min-h-screen flex-row justify-center align-middle">
@@ -46,9 +51,13 @@ const FormsPage = () => {
       </div>
     );
   }
+  console.log(form);
   return (
     <main data-theme={theme} className="overflow-y-auto">
-      <div className="overflow-y-auto"></div>
+      <div className="overflow-y-auto">
+        <NavbarFormsUser theme={theme} callback={handleThemeChange} />
+        <FormWrapperAnswers form={form} />
+      </div>
     </main>
   );
 };
