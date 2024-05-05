@@ -1,42 +1,54 @@
-export const FormFieldUser = ({ field }: { field: any }) => {
+import { FieldValues, UseFormRegister } from "react-hook-form";
+import { NumberAnswerUser } from "./NumberAnswer";
+import { TextAnswerUser } from "./TextAnwer";
+import { DateAnswerUser } from "./DateAnswerUser";
+import { TimeAnswerUser } from "./TimeAnswerUser";
+
+export const FormFieldUser = ({
+  field,
+  register,
+}: {
+  field: any;
+  register: UseFormRegister<FieldValues>;
+}) => {
   return (
     <div className="flex rounded-lg flex-col w-full bg-slate-600 min-w-[770px] max-w-[770px] ">
-      {field.fieldAnswertype === 0 && (
+      {field.fieldAnswerType === 0 && (
         <div className="w-full p-6 pt-2 pb-6">
-          {"<TextAnswer  field={field} />"}
+          <TextAnswerUser field={field} register={register} />
         </div>
       )}
-      {field.fieldAnswertype === 1 && (
+      {field.fieldAnswerType === 1 && (
         <div className="w-full p-6 pt-2 pb-6">
-          {"<NumberAnswer  field={field} />"}
+          <NumberAnswerUser field={field} register={register} />
         </div>
       )}
-      {field.fieldAnswertype === 2 && (
+      {field.fieldAnswerType === 2 && (
         <div className="w-full p-6 pt-2 pb-6">
-          {"<DateAnswer} field={field} />"}
+          <DateAnswerUser field={field} register={register} />
         </div>
       )}
-      {field.fieldAnswertype === 3 && (
+      {field.fieldAnswerType === 3 && (
         <div className="w-full p-6 pt-2 pb-6">
-          {"<TimeAnswer  field={field} />"}
+          <TimeAnswerUser field={field} register={register} />
         </div>
       )}
-      {field.fieldAnswertype === 4 && (
+      {field.fieldAnswerType === 4 && (
         <div className="w-full p-6 pt-2 pb-6">
           {"<RadioButtons field={field} />"}
         </div>
       )}
-      {field.fieldAnswertype === 5 && (
+      {field.fieldAnswerType === 5 && (
         <div className="w-full p-6 pt-2 pb-6">
           {"<CheckboxAnswer field={field} />"}
         </div>
       )}
-      {field.fieldAnswertype === 6 && (
+      {field.fieldAnswerType === 6 && (
         <div className="w-full p-6 pt-2 pb-6">
           {"<LinealScale  field={field}  />"}
         </div>
       )}
-      {field.fieldAnswertype === 7 && (
+      {field.fieldAnswerType === 7 && (
         <div className="w-full p-6 pt-2 pb-6">
           {"<SelectionGrid  field={field} />"}
         </div>
