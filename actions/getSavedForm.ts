@@ -39,7 +39,11 @@ export const getSavedFormClient = async (id: string) => {
       formid: formid.formid,
     },
     include: {
-      fields: true,
+      fields: {
+        include: {
+          Answers: true,
+        },
+      },
     },
   });
   return form;
