@@ -38,7 +38,10 @@ export const SelectionGridUser = ({
       <div className="overflow-auto">
         <div className="flex flex-row ml-32">
           {rowAnswers.map((answer: any, index) => (
-            <div className="text-md text-gray-300 border-transparent ml-4 text-ellipsis w-36 text-center">
+            <div
+              className="text-md text-gray-300 border-transparent ml-4 text-ellipsis w-36 text-center"
+              key={answer.answerName + index}
+            >
               {rowAnswers[index].answerName}
             </div>
           ))}
@@ -46,7 +49,10 @@ export const SelectionGridUser = ({
         <div className="flex flex-row mt-8 pb-4">
           <div className="flex flex-col w-36 gap-2">
             {columnAnswers.map((answer: any, index) => (
-              <div className="text-md text-gray-300 border-transparent ml-4 text-ellipsis w-36 text-center h-9 py-2">
+              <div
+                className="text-md text-gray-300 border-transparent ml-4 text-ellipsis w-36 text-center h-9 py-2"
+                key={answer.answerName + index}
+              >
                 {columnAnswers[index].answerName}
               </div>
             ))}
