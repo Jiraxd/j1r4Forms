@@ -1,6 +1,8 @@
 "use server";
 
 import { db } from "@/lib/db";
+import { Prisma } from "@prisma/client";
+import { JsonObject } from "@prisma/client/runtime/library";
 
 export const updateFormName = async (id: string, name: string) => {
   await db.savedForm.update({
@@ -296,4 +298,39 @@ export const updatePositionField = async (
       },
     },
   });
+};
+
+export const AddFormAnswer = async (
+  formid: string,
+  answerJSON: Prisma.JsonObject,
+  userid: string
+) => {
+  await db.savedForm.update({
+    where: {
+      formid: formid,
+    },
+    data: {
+      answersfromusers: {
+        create: {
+          answer: answerJSON,
+          useranswerid: userid,
+        },
+      },
+    },
+  });
+};
+
+export const GetAnswered = async (formid: string, userid: string) => {
+  const count = await db.savedForm.count({
+    where: {
+      formid: formid,
+      answersfromusers: {
+        some: {
+          useranswerid: userid,
+        },
+      },
+    },
+  });
+  if (count === 0) return false;
+  return true;
 };

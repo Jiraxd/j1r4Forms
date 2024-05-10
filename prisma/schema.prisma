@@ -75,17 +75,9 @@ model FormAnswer {
 }
 
 model UserAnswered {
-  id           String            @id @default(cuid())
-  userID       String            @unique
-  form         SavedForm         @relation(fields: [formid], references: [formid])
+  id           String    @id @default(cuid())
+  form         SavedForm @relation(fields: [formid], references: [formid])
   formid       String
-  useransweres AnswersUserForm[]
-}
-
-model AnswersUserForm {
-  id           String       @id @default(cuid())
-  answerIndex  Int
-  answer       String
-  useranswered UserAnswered @relation(fields: [userid], references: [userID])
-  userid       String
+  useranswerid String
+  answer       Json
 }

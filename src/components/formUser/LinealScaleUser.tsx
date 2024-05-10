@@ -39,13 +39,12 @@ export const LinealScaleUser = ({
                 <div>{MinNumber === 0 ? index : index + 1}</div>
                 <input
                   type="radio"
-                  name="radio-1"
-                  className="radio cursor-default"
+                  className="radio cursor-pointer"
+                  value={index}
+                  {...register((field.fieldID as number).toString())}
                   style={{
                     borderColor: "rgb(209 213 219 / var(--tw-text-opacity))",
                   }}
-                  checked={false}
-                  onChange={() => {}}
                 />
               </div>
             ))}

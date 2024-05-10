@@ -26,6 +26,9 @@ export const getSavedFormClient = async (id: string) => {
       link: id,
     },
   });
+  if (formid === undefined) {
+    return "null";
+  }
   if (formid === null) {
     return "null";
   }

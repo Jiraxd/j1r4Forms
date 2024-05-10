@@ -6,6 +6,7 @@ import { TimeAnswerUser } from "./TimeAnswerUser";
 import { RadioButtonsUser } from "./RadioButtonsUser";
 import { CheckboxesUser } from "./CheckboxUser";
 import { LinealScaleUser } from "./LinealScaleUser";
+import { SelectionGridUser } from "./SelectionGridUser";
 
 export const FormFieldUser = ({
   field,
@@ -58,7 +59,7 @@ export const FormFieldUser = ({
       )}
       {field.fieldAnswerType === 7 && (
         <div className="w-full p-6 pt-2 pb-6">
-          {"<SelectionGrid  field={field} />"}
+          <SelectionGridUser field={field} register={register} />
         </div>
       )}
     </div>

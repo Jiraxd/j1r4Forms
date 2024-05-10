@@ -29,13 +29,9 @@ export const RadioButtonsUser = ({
               <label className="label">
                 <input
                   type="radio"
-                  name="radio-1"
-                  className="radio cursor-default"
-                  {...register(
-                    (field.fieldID as number).toString() +
-                      "-" +
-                      (answer.answerID as number).toString()
-                  )}
+                  className="radio cursor-pointer"
+                  value={answer.answerID}
+                  {...register((field.fieldID as number).toString())}
                   style={{
                     borderColor: "rgb(209 213 219 / var(--tw-text-opacity))",
                   }}

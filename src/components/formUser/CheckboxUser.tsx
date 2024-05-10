@@ -30,7 +30,7 @@ export const CheckboxesUser = ({
                 <input
                   type="checkbox"
                   name="checkbox-1"
-                  className="checkbox cursor-default"
+                  className="checkbox cursor-pointer"
                   {...register(
                     (field.fieldID as number).toString() +
                       "-" +

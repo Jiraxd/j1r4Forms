@@ -12,7 +12,6 @@ export const FormWrapper = ({
   callback: Function;
 }) => {
   const [selectedField, setSelectedField] = useState<number>(-1);
-  //console.log(form);
   const callbackCreateField = (formnew: any) => {
     callback(formnew);
   };
