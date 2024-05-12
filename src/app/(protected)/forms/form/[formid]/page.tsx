@@ -17,6 +17,7 @@ import { saveImageServer } from "../../../../../../actions/saveImageServer";
 const FormPage = () => {
   const [theme, setTheme] = useState<string>("dark");
   const [form, setForm] = useState<any>(null);
+  const [selectedQuestions, setSelected] = useState<boolean>(true);
   const pathname = usePathname();
   useEffect(() => {
     let localTheme = localStorage.getItem("theme");
@@ -74,9 +75,14 @@ const FormPage = () => {
         theme={theme}
         onThemeChange={handleThemeChange}
         form={form}
+        changeSelected={(questions: boolean) => setSelected(questions)}
       />
       <div className="overflow-y-auto" id="form_wrapper">
-        <FormWrapper form={form} callback={callbackUpdateFormClient} />
+        <FormWrapper
+          form={form}
+          callback={callbackUpdateFormClient}
+          questionsSelected={selectedQuestions}
+        />
       </div>
       <dialog id="save_popup" className="modal border-transparent">
         <div className="modal-box">
