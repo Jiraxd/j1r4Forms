@@ -301,13 +301,13 @@ export const updatePositionField = async (
 };
 
 export const AddFormAnswer = async (
-  formid: string,
+  formidx: string,
   answerJSON: Prisma.JsonObject,
   userid: string
 ) => {
   await db.savedForm.update({
     where: {
-      formid: formid,
+      formid: formidx,
     },
     data: {
       answersfromusers: {

@@ -3,6 +3,8 @@ import { FormField } from "./formFields/FormField";
 import { FormTitle } from "./formFields/formTitle";
 import { FormMenu } from "./formMenu";
 import { updatePositionField } from "../../../actions/dbUpdates";
+import { FormAnswersAdmin } from "./formAnswersAdmin";
+import { FormMenuAnswers } from "./formMenuAnswers";
 
 export const FormWrapper = ({
   form,
@@ -14,6 +16,7 @@ export const FormWrapper = ({
   questionsSelected: boolean;
 }) => {
   const [selectedField, setSelectedField] = useState<number>(-1);
+  const [selectedAnswer, setSelectedAnswer] = useState<number>(0);
   const callbackCreateField = (formnew: any) => {
     callback(formnew);
   };
@@ -75,6 +78,7 @@ export const FormWrapper = ({
       form.formid
     );
   }
+
   return (
     <div className="overflow-x-auto">
       <div className="mt-32 mx-auto w-[770px]">
@@ -148,12 +152,31 @@ export const FormWrapper = ({
                   </div>
                 </div>
               </div>
+              <FormMenuAnswers
+                key={selectedAnswer}
+                callback={(option: any) => {
+                  if (option === "right") {
+                    if (
+                      (form.answersfromusers as [])?.length - 1 >
+                      selectedAnswer
+                    ) {
+                      setSelectedAnswer(selectedAnswer + 1);
+                    }
+                  } else {
+                    if (selectedAnswer > 0) {
+                      setSelectedAnswer(selectedAnswer - 1);
+                    }
+                  }
+                }}
+                selectedAnswer={selectedAnswer}
+                length={form.answersfromusers.length}
+              />
             </div>
             <div className="flex flex-col items-center pb-60">
               <div className="text-3xl font-bold text-gray-300 border-transparent my-4">
                 {"Answers to questions in your form:"}
               </div>
-              {/*Add answers*/}
+              <FormAnswersAdmin form={form} selectedIndex={selectedAnswer} />
             </div>
           </>
         )}
