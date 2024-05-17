@@ -12,7 +12,8 @@ export const LinealScale = ({
   formid: string;
   selected: boolean;
 }) => {
-  // for some reason this does not work for 0 in the ||, it has to do something with JS thinking 0 is false after i parsed it  :)
+  // for some reason this does not work for 0 in the ||, it has to do something with JS thinking 0 is false after i parsed it  :) - long time ago
+  // i might be retarded ?? - 17.5.2024
   const [MinNumber, setMinNumber] = useState<number>(
     parseInt(
       ((field.Answers as []).find((f: any) => f.answerType === 3) as any)
