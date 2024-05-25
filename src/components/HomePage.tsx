@@ -71,13 +71,12 @@ export const HomePage = () => {
                     <button className="btn btn-primary">Get Started</button>
                   </RegisterButton>
                 </div>
-                <div className="ml-25 text-slate-500">
-                  {"TODO: Add a preview of the form here"}
+                <div className="ml-25 text-slate-500 h-[400px] w-[600px]">
                   <Image
-                    src={"/images/"}
+                    src={"/images/Preview1.webp"}
                     alt={"preview1"}
-                    width={300}
-                    height={300}
+                    width={1920}
+                    height={1080}
                     className="ml-5"
                   />
                 </div>
@@ -96,14 +95,12 @@ export const HomePage = () => {
                     to achieve your desired looks.
                   </p>
                 </div>
-                <div className="ml-25 text-slate-500">
-                  {"TODO: Add a preview of the form here"}
+                <div className="ml-24 text-slate-500 h-[400px] w-[600px]">
                   <Image
-                    src={"/images/"}
-                    alt={"preview1"}
-                    width={300}
-                    height={300}
-                    className="ml-5"
+                    src={"/images/Preview2.webp"}
+                    alt={"preview2"}
+                    width={1920}
+                    height={1080}
                   />
                 </div>
               </div>
@@ -116,14 +113,12 @@ export const HomePage = () => {
                     You can also allow others to view the answers to your form.
                   </p>
                 </div>
-                <div className="ml-25 text-slate-500">
-                  {"TODO: Add a preview of the form here"}
+                <div className="text-slate-500 h-[400px] w-[600px] mr-24">
                   <Image
-                    src={"/images/"}
-                    alt={"preview1"}
-                    width={300}
-                    height={300}
-                    className="ml-5"
+                    src={"/images/Preview3.webp"}
+                    alt={"preview3"}
+                    width={1920}
+                    height={1080}
                   />
                 </div>
               </div>
@@ -137,13 +132,12 @@ export const HomePage = () => {
                     directly.
                   </p>
                 </div>
-                <div className="ml-25 text-slate-500">
-                  {"TODO: Add a preview of the form here"}
+                <div className="ml-24 text-slate-500 h-[400px] w-[600px]">
                   <Image
-                    src={"/images/"}
-                    alt={"preview1"}
-                    width={300}
-                    height={300}
+                    src={"/images/Preview4.webp"}
+                    alt={"preview4"}
+                    width={1920}
+                    height={1080}
                     className="ml-5"
                   />
                 </div>
